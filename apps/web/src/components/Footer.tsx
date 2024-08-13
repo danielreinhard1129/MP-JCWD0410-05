@@ -1,3 +1,4 @@
+'use client';
 import {
   Box,
   Container,
@@ -10,9 +11,15 @@ import {
   Text,
 } from '@chakra-ui/react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 const Footer = () => {
+  const pathname = usePathname();
+
+  if (pathname.startsWith('/dashboard')) {
+    return null;
+  }
   return (
     <Box bgColor="#003249">
       <Container maxW="7xl">
