@@ -114,25 +114,6 @@ const LayoutWrapper = ({ children }: PropsWithChildren) => {
               <Text fontSize="21px">Attendee List</Text>
             </Box>
           </Link>
-          <Link href="/dashboard/setting">
-            <Box
-              display="flex"
-              mb="7"
-              py={1}
-              gap={5}
-              alignItems="center"
-              _hover={{
-                bgColor: '#D4CDF4',
-                color: '#003249',
-                borderRadius: '7px',
-              }}
-            >
-              <Box pl={3}>
-                <TbSettings size="25px" />
-              </Box>
-              <Text fontSize="21px">Setting</Text>
-            </Box>
-          </Link>
         </Flex>
       </Box>
 
