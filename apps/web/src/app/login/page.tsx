@@ -59,6 +59,13 @@ const Login = () => {
           </InputRightElement>
         </InputGroup>
 
+        {/* forgot password */}
+        <Link href="/lupa-password">
+          <Text mt="15px" textAlign="end" fontSize="xs" color="#006BB4">
+            Lupa password ?
+          </Text>
+        </Link>
+
         {/* tombol login */}
         <Link href="/">
           <Text
@@ -68,7 +75,7 @@ const Login = () => {
             borderRadius="lg"
             textAlign={'center'}
             p="8px"
-            mt="25px"
+            mt="15px"
             w="100%"
           >
             Masuk

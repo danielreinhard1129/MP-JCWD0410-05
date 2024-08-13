@@ -127,9 +127,15 @@ const Explore = () => {
                   <Text>Fri 13 Sep 2024 12:00 PM</Text>
                 </Box>
               </Stack>
-              <Text fontWeight="semibold" mt={3} _hover={{ color: '#E86B32' }}>
-                See the event...
-              </Text>
+              <Link href="/explore/id">
+                <Text
+                  fontWeight="semibold"
+                  mt={3}
+                  _hover={{ color: '#E86B32' }}
+                >
+                  See the event...
+                </Text>
+              </Link>
             </Box>
             <Box maxW="sm">
               <Image
@@ -148,9 +154,15 @@ const Explore = () => {
                   <Text>Fri 13 Sep 2024 12:00 PM</Text>
                 </Box>
               </Stack>
-              <Text fontWeight="semibold" mt={3} _hover={{ color: '#E86B32' }}>
-                See the event...
-              </Text>
+              <Link href="/explore/id">
+                <Text
+                  fontWeight="semibold"
+                  mt={3}
+                  _hover={{ color: '#E86B32' }}
+                >
+                  See the event...
+                </Text>
+              </Link>
             </Box>
             <Box maxW="sm">
               <Image
@@ -169,9 +181,15 @@ const Explore = () => {
                   <Text>Fri 13 Sep 2024 12:00 PM</Text>
                 </Box>
               </Stack>
-              <Text fontWeight="semibold" mt={3} _hover={{ color: '#E86B32' }}>
-                See the event...
-              </Text>
+              <Link href="/explore/id">
+                <Text
+                  fontWeight="semibold"
+                  mt={3}
+                  _hover={{ color: '#E86B32' }}
+                >
+                  See the event...
+                </Text>
+              </Link>
             </Box>
           </GridItem>
         </Grid>

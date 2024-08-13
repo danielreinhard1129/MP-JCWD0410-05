@@ -14,6 +14,7 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 import React from 'react';
 
 const EventList = () => {
@@ -40,9 +41,15 @@ const EventList = () => {
                   <Text>Fri 13 Sep 2024 12:00 PM</Text>
                 </Box>
               </Stack>
-              <Text fontWeight="semibold" mt={3} _hover={{ color: '#E86B32' }}>
-                See the event...
-              </Text>
+              <Link href="/explore/id">
+                <Text
+                  fontWeight="semibold"
+                  mt={3}
+                  _hover={{ color: '#E86B32' }}
+                >
+                  See the event...
+                </Text>
+              </Link>
             </Box>
             <Box maxW="xs">
               <Image
@@ -61,9 +68,15 @@ const EventList = () => {
                   <Text>Fri 13 Sep 2024 12:00 PM</Text>
                 </Box>
               </Stack>
-              <Text fontWeight="semibold" mt={3} _hover={{ color: '#E86B32' }}>
-                See the event...
-              </Text>
+              <Link href="/explore/id">
+                <Text
+                  fontWeight="semibold"
+                  mt={3}
+                  _hover={{ color: '#E86B32' }}
+                >
+                  See the event...
+                </Text>
+              </Link>
             </Box>
             <Box maxW="xs">
               <Image
@@ -82,9 +95,15 @@ const EventList = () => {
                   <Text>Fri 13 Sep 2024 12:00 PM</Text>
                 </Box>
               </Stack>
-              <Text fontWeight="semibold" mt={3} _hover={{ color: '#E86B32' }}>
-                See the event...
-              </Text>
+              <Link href="/explore/id">
+                <Text
+                  fontWeight="semibold"
+                  mt={3}
+                  _hover={{ color: '#E86B32' }}
+                >
+                  See the event...
+                </Text>
+              </Link>
             </Box>
           </GridItem>
         </Grid>
