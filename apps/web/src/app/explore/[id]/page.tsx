@@ -178,11 +178,16 @@ const DetailEvent = () => {
                       fontSize="xl"
                       fontWeight="bold"
                       bgColor="#E86B32"
-                      mt={7}
                       color="white"
+                      mt={7}
                       py={1}
                       px={3}
                       borderRadius="10px"
+                      _hover={{
+                        borderColor: '#E3E7EA',
+                        bgColor: '#E3E7EA',
+                        color: 'black',
+                      }}
                     >
                       Beli Tiket
                     </Text>
@@ -238,11 +243,16 @@ const DetailEvent = () => {
                       fontSize="xl"
                       fontWeight="bold"
                       bgColor="#E86B32"
-                      mt={7}
                       color="white"
+                      mt={7}
                       py={1}
                       px={3}
                       borderRadius="10px"
+                      _hover={{
+                        borderColor: '#E3E7EA',
+                        bgColor: '#E3E7EA',
+                        color: 'black',
+                      }}
                     >
                       Beli Tiket
                     </Text>
@@ -298,11 +308,16 @@ const DetailEvent = () => {
                       fontSize="xl"
                       fontWeight="bold"
                       bgColor="#E86B32"
-                      mt={7}
                       color="white"
+                      mt={7}
                       py={1}
                       px={3}
                       borderRadius="10px"
+                      _hover={{
+                        borderColor: '#E3E7EA',
+                        bgColor: '#E3E7EA',
+                        color: 'black',
+                      }}
                     >
                       Beli Tiket
                     </Text>

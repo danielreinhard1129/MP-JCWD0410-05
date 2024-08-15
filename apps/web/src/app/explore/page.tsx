@@ -78,34 +78,24 @@ const Explore = () => {
         </Flex>
         {/* ini tempat */}
         <Box gap={7} position="relative" py={4}>
-          <Text fontWeight="bold" ml="10px" w="156px" fontSize="xl">
+          <Text fontWeight="bold" w="156px" fontSize="xl">
             Explore event in
           </Text>
-          <Flex
-            mt="5px"
-            border="2px solid black"
-            borderRadius="25px"
-            w="fit-content"
-            p="2"
-            align="center"
-            pl={3}
-          >
-            <TfiLocationPin size="25px" color="#718096" />
 
-            <Select
-              w="120px"
-              borderRadius="20px"
-              color="#718096"
-              variant="unstyled"
-              ml={2}
-            >
-              <option value="option1">Jakarta</option>
-              <option value="option2">Bandung</option>
-              <option value="option3">Yogyakarta</option>
-              <option value="option4">Malang</option>
-              <option value="option5">Surabaya</option>
-            </Select>
-          </Flex>
+          {/* ini dropdown */}
+          <Select
+            w="150px"
+            icon={<TfiLocationPin size="25px" color="#718096" />}
+            placeholder=""
+            borderRadius="20px"
+            mt="10px"
+          >
+            <option value="option1">Jakarta</option>
+            <option value="option2">Bandung</option>
+            <option value="option3">Yogyakarta</option>
+            <option value="option4">Malang</option>
+            <option value="option5">Surabaya</option>
+          </Select>
         </Box>
         {/* ini card */}
         <Grid>
