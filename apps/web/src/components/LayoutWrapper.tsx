@@ -14,7 +14,7 @@ import NavbarDashboard from './NavbarDashboard';
 const LayoutWrapper = ({ children }: PropsWithChildren) => {
   return (
     <Flex>
-      <Box h="100vh" w="300px" bg="#003249" color="white" px={7}>
+      <Box w="300px" bg="#003249" color="white" px={7}>
         <Link href="/dashboard">
           <Image src="/Logo_Festivity_3.svg" w="175px" mt="50px" />
         </Link>
@@ -117,7 +117,7 @@ const LayoutWrapper = ({ children }: PropsWithChildren) => {
         </Flex>
       </Box>
 
-      <Box h="100vh" w="100%">
+      <Box h="100vh" w="100%" overflowY="auto">
         <NavbarDashboard />
         {children}
       </Box>
