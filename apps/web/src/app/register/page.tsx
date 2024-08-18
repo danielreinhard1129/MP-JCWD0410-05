@@ -19,7 +19,7 @@ const Daftar = () => {
   return (
     <Box alignContent={'center'} h="100vh">
       <Container
-        w="md"
+        maxW={{ base: 'sm', md: 'md' }}
         bgColor="#003249"
         p={4}
         display="flex"
@@ -31,7 +31,7 @@ const Daftar = () => {
         </Link>
       </Container>
       <Container
-        maxW="md"
+        maxW={{ base: 'sm', md: 'md' }}
         boxShadow="xl"
         bg="white"
         pt="20px"

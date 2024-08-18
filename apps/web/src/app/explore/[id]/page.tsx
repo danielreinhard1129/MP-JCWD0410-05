@@ -24,8 +24,14 @@ import Link from 'next/link';
 const DetailEvent = () => {
   return (
     <Box>
-      <Container maxW="7xl" pt="80px" py="100px">
-        <Grid templateColumns="2fr 1fr" gap={10}>
+      <Container
+        maxW={{ base: '100%', md: '7xl' }}
+        py={{ base: '60px', md: '100px' }}
+      >
+        <Grid
+          templateColumns={{ base: 'none', md: '1fr 1fr' }}
+          gap={{ base: '5', md: '10' }}
+        >
           <GridItem alignItems="center">
             <Image
               src="https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -55,7 +61,7 @@ const DetailEvent = () => {
               </Flex>
               <Box position="relative" mt="50px">
                 <Divider borderWidth="1px" borderColor="black" />
-                <AbsoluteCenter bg="white" px="4" fontSize="xs" color="#8E919B">
+                <AbsoluteCenter bg="white" px="3" fontSize="xs" color="#8E919B">
                   Diselenggarakan oleh
                 </AbsoluteCenter>
               </Box>
@@ -65,8 +71,12 @@ const DetailEvent = () => {
             </Card>
           </GridItem>
         </Grid>
-        <Grid templateColumns="1fr 1fr" mt="70px" gap={10}>
-          {/* ini deskripsi */}
+        {/* ini deskripsi */}
+        <Grid
+          templateColumns={{ base: 'none', md: '1fr 1fr' }}
+          mt="70px"
+          gap={10}
+        >
           <GridItem>
             <Text fontWeight="bold" textAlign="center">
               Deskripsi
@@ -146,7 +156,11 @@ const DetailEvent = () => {
               </Flex>
               <Divider borderWidth="1px" borderColor="#E86B32" mt="5px" />
               <Flex justify="space-between" align="center">
-                <Text fontSize="xl" fontWeight="bold" mt={7}>
+                <Text
+                  fontSize={{ base: 'md', md: 'xl' }}
+                  fontWeight="bold"
+                  mt={7}
+                >
                   Rp 2.000.000
                 </Text>
                 <Flex gap={5} align="center">
@@ -175,7 +189,7 @@ const DetailEvent = () => {
                   </NumberInput>
                   <Link href="/transaksi">
                     <Text
-                      fontSize="xl"
+                      fontSize={{ base: 'md', md: 'xl' }}
                       fontWeight="bold"
                       bgColor="#E86B32"
                       color="white"
@@ -211,7 +225,11 @@ const DetailEvent = () => {
               </Flex>
               <Divider borderWidth="1px" borderColor="#E86B32" mt="5px" />
               <Flex justify="space-between" align="center">
-                <Text fontSize="xl" fontWeight="bold" mt={7}>
+                <Text
+                  fontSize={{ base: 'md', md: 'xl' }}
+                  fontWeight="bold"
+                  mt={7}
+                >
                   Rp 1.500.000
                 </Text>
                 <Flex gap={5} align="center">
@@ -240,7 +258,7 @@ const DetailEvent = () => {
                   </NumberInput>
                   <Link href="/transaksi">
                     <Text
-                      fontSize="xl"
+                      fontSize={{ base: 'md', md: 'xl' }}
                       fontWeight="bold"
                       bgColor="#E86B32"
                       color="white"
@@ -276,7 +294,11 @@ const DetailEvent = () => {
               </Flex>
               <Divider borderWidth="1px" borderColor="#E86B32" mt="5px" />
               <Flex justify="space-between" align="center">
-                <Text fontSize="xl" fontWeight="bold" mt={7}>
+                <Text
+                  fontSize={{ base: 'md', md: 'xl' }}
+                  fontWeight="bold"
+                  mt={7}
+                >
                   Rp 1.000.000
                 </Text>
                 <Flex gap={5} align="center">
@@ -305,7 +327,7 @@ const DetailEvent = () => {
                   </NumberInput>
                   <Link href="/transaksi">
                     <Text
-                      fontSize="xl"
+                      fontSize={{ base: 'md', md: 'xl' }}
                       fontWeight="bold"
                       bgColor="#E86B32"
                       color="white"
