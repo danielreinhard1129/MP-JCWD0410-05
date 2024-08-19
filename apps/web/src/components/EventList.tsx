@@ -22,8 +22,13 @@ const EventList = () => {
     <Box>
       <Container maxW="7xl" py={7}>
         <Heading textAlign="center">FESTIVALS</Heading>
-        <Grid justifyContent="center">
-          <GridItem display="flex" gap="50px" py="50px">
+        <Grid justifyContent={{ base: 'center', md: 'center' }}>
+          <GridItem
+            display="flex"
+            gap={{ base: '30px', md: '50px' }}
+            py={{ base: '20px', md: '50px' }}
+            flexDirection={{ base: 'column', md: 'row' }}
+          >
             <Box maxW="xs">
               <Image
                 src="https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

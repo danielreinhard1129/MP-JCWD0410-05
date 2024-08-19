@@ -9,15 +9,14 @@ import {
   Select,
   Text,
 } from '@chakra-ui/react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { CiBank } from 'react-icons/ci';
 
 const Transaksi = () => {
   return (
     <Box py="40px" bgColor="#F3F3F3">
-      <Container maxW="7xl" bgColor="white" p={7}>
-        <Grid templateColumns="3fr 1fr 1fr 1fr ">
+      <Container maxW={{ base: '100%', md: '7xl' }} bgColor="white" p={7}>
+        <Grid templateColumns={{ base: 'none', md: '1fr 1fr' }}>
           <GridItem>
             <Text fontWeight="bold" fontSize="sm">
               Tiket Dipesan
@@ -55,73 +54,77 @@ const Transaksi = () => {
 
         {/* voucher rewards */}
         <Grid
-          gap={32}
-          templateColumns="1fr 1fr"
+          gap={{ base: '22' }}
+          templateColumns={{ base: '1fr', md: '1fr 1fr' }}
           py="50px"
-          display="flex"
-          justifyContent="center"
         >
-          <Flex
-            gap={10}
-            // border="1px solid black"
-            p={5}
-            w="400px"
-            align="center"
-            justify="center"
-            borderRadius="5px"
-            bgColor="#D4CDF4"
-          >
-            <Text fontWeight="bold" fontSize="sm">
-              Voucher Toko
-            </Text>
-            <Text fontSize="3xl" fontWeight="bold">
-              30%
-            </Text>
-            <Button
-              border="1px"
-              _hover={{
-                borderColor: '#E86B32',
-                bgColor: '#E86B32',
-                color: 'white',
-              }}
-              h="30px"
+          <GridItem m="auto">
+            <Flex
+              gap={10}
+              p={5}
+              w={{ base: '350px', md: '400px' }}
+              align="center"
+              justify="center"
+              borderRadius="5px"
+              bgColor="#D4CDF4"
             >
-              Pakai
-            </Button>
-          </Flex>
-          <Flex
-            gap={10}
-            // border="1px solid black"
-            p={5}
-            w="400px"
-            align="center"
-            justify="center"
-            borderRadius="5px"
-            bgColor="#D4CDF4"
-          >
-            <Text fontWeight="bold" fontSize="sm">
-              Voucher Rewards
-            </Text>
-            <Text fontSize="3xl" fontWeight="bold">
-              30%
-            </Text>
-            <Button
-              border="1px"
-              _hover={{
-                borderColor: '#E86B32',
-                bgColor: '#E86B32',
-                color: 'white',
-              }}
-              h="30px"
+              <Text fontWeight="bold" fontSize="sm">
+                Voucher Toko
+              </Text>
+              <Text fontSize="3xl" fontWeight="bold">
+                30%
+              </Text>
+              <Button
+                border="1px"
+                _hover={{
+                  borderColor: '#E86B32',
+                  bgColor: '#E86B32',
+                  color: 'white',
+                }}
+                h="30px"
+              >
+                Pakai
+              </Button>
+            </Flex>
+          </GridItem>
+          <GridItem m="auto">
+            <Flex
+              gap={10}
+              p={5}
+              w={{ base: '350px', md: '400px' }}
+              align="center"
+              justify="center"
+              borderRadius="5px"
+              bgColor="#D4CDF4"
             >
-              Pakai
-            </Button>
-          </Flex>
+              <Text fontWeight="bold" fontSize="sm">
+                Voucher Rewards
+              </Text>
+              <Text fontSize="3xl" fontWeight="bold">
+                30%
+              </Text>
+              <Button
+                border="1px"
+                _hover={{
+                  borderColor: '#E86B32',
+                  bgColor: '#E86B32',
+                  color: 'white',
+                }}
+                h="30px"
+              >
+                Pakai
+              </Button>
+            </Flex>
+          </GridItem>
         </Grid>
         <Divider borderWidth="1px" borderColor="#EDF2F7" />
 
         {/* total pesanan */}
-        <Grid templateColumns="5fr 1fr" py="30px" alignItems="center">
+        <Grid
+          templateColumns={{ base: '1fr 1fr', md: '5fr 1fr' }}
+          py="30px"
+          alignItems="center"
+        >
           <Text textAlign="end" pr={5} color="#718096" fontSize="sm">
             Total pesanan :
           </Text>
@@ -132,8 +135,8 @@ const Transaksi = () => {
         <Divider borderWidth="1px" borderColor="#EDF2F7" />
 
         {/* metode pambayaran dan bayar */}
-        <Grid templateColumns="5fr 1fr">
-          <Flex my={5} align="center" gap={5}>
+        <Grid templateColumns={{ base: '1fr', md: '5fr 1fr' }}>
+          <Flex my={5} align="center" gap={{ base: '3', md: '5' }}>
             <Text fontWeight="bold" fontSize="sm">
               Metode pembayaran
             </Text>
@@ -163,7 +166,7 @@ const Transaksi = () => {
             </Link>
           </Flex>
           {/* bayar */}
-          <Flex my={5} justifyContent="center">
+          <Flex my={{ base: '3', md: '5' }} justifyContent="center">
             <Link href="/transaksi">
               <Button
                 fontSize="xl"

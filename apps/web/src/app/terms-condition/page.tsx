@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <Box>
-      <Container maxW="7xl">
+      <Container maxW={{ base: '100%', md: '7xl' }}>
         <Box py="50px">
           <Heading>Syarat dan Ketentuan</Heading>
           <Text mt="25px" align="justify">

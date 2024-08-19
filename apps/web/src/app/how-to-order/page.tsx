@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <Box>
-      <Container maxW="7xl">
+      <Container maxW={{ base: '100%', md: '7xl' }}>
         <Box py="50px">
           <Heading>Cara Memesan Tiket</Heading>
           <Box mt="15px">

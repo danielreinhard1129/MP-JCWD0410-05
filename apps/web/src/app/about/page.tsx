@@ -24,42 +24,64 @@ const AboutUs = () => {
   return (
     <Box>
       <Container maxW="7xl">
-        <Box py="50px">
-          <Heading>Tentang Kami</Heading>
-          <Text mt="25px" align="justify">
+        <Box
+          py={{ base: '30px', md: '50px' }}
+          maxW={{ base: '100%', md: '7xl' }}
+        >
+          <Heading fontSize={{ base: 'xl', md: '4xl' }}>Tentang Kami</Heading>
+          <Text
+            mt={{ base: '10px', md: '25px' }}
+            fontSize={{ base: 's', md: 'sm' }}
+            align="justify"
+          >
             Selamat datang di Festivity, perayaan tahunan yang didedikasikan
             untuk menyatukan komunitas melalui beragam kegiatan seni, budaya,
             dan hiburan. Festivity adalah tempat di mana kebahagiaan,
             kreativitas, dan kebersamaan bertemu dalam satu acara besar yang
             penuh warna dan keceriaan.
           </Text>
-          <Box mt="50px">
-            <Grid templateColumns="1fr 1fr" gap={7}>
+          <Box mt={{ base: '30px', md: '50px' }}>
+            <Grid
+              templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
+              gap={7}
+            >
               <GridItem>
                 <Card boxShadow="md">
-                  <CardBody>
-                    <Heading fontSize="xl" textAlign="center">
+                  <CardBody py={{ base: '10px' }}>
+                    <Heading
+                      fontSize={{ base: 'lg', md: 'xl' }}
+                      textAlign="center"
+                    >
                       Misi Kami
                     </Heading>
-                    <Text mt="15px" align="justify">
+                    <Text
+                      mt={{ base: '10px', md: '15px' }}
+                      align="justify"
+                      fontSize={{ base: 's', md: 'sm' }}
+                    >
                       Misi kami adalah menciptakan pengalaman tak terlupakan
                       bagi setiap pengunjung melalui berbagai acara yang
                       menghibur dan mendidik. Kami percaya bahwa seni dan budaya
                       memiliki kekuatan untuk menyatukan orang-orang dari
-                      berbagai latar belakang, dan melalui Festivity, kami
-                      berharap dapat menginspirasi dan memperkaya kehidupan
-                      masyarakat.
+                      berbagai latar belakang.
                     </Text>
                   </CardBody>
                 </Card>
               </GridItem>
               <GridItem>
                 <Card boxShadow="md">
-                  <CardBody>
-                    <Heading fontSize="xl" textAlign="center">
+                  <CardBody py={{ base: '10px' }}>
+                    <Heading
+                      fontSize={{ base: 'lg', md: 'xl' }}
+                      textAlign="center"
+                    >
                       Visi Kami
                     </Heading>
-                    <Text mt="15px" align="justify">
+                    <Text
+                      mt={{ base: '10px', md: '15px' }}
+                      align="justify"
+                      fontSize={{ base: 's', md: 'sm' }}
+                    >
                       Visi kami adalah menjadi acara tahunan terbesar dan paling
                       berpengaruh di Indonesia yang merayakan seni, budaya, dan
                       komunitas. Kami berkomitmen untuk terus menghadirkan
@@ -72,10 +94,18 @@ const AboutUs = () => {
               </GridItem>
             </Grid>
           </Box>
-          <Box mt="50px">
-            <Heading fontSize="xl">Apa yang Kami Tawarkan</Heading>
+          <Box mt={{ base: '30px', md: '50px' }}>
+            <Heading fontSize={{ base: 'xl', md: 'xl' }}>
+              Apa yang Kami Tawarkan
+            </Heading>
             <Box mt="15px">
-              <Grid templateColumns="1fr 1fr 1fr" gap={7}>
+              <Grid
+                templateColumns={{
+                  base: 'repeat(1, 1fr)',
+                  md: 'repeat(3, 1fr)',
+                }}
+                gap={{ base: '5', md: '7' }}
+              >
                 <GridItem>
                   <Card borderRadius="25px">
                     <CardBody>
@@ -87,11 +117,11 @@ const AboutUs = () => {
                         textAlign="center"
                         py={3}
                         fontWeight="semibold"
-                        fontSize="19px"
+                        fontSize={{ base: 'lg', md: '19px' }}
                       >
                         Konser Musik
                       </Text>
-                      <Text align="justify">
+                      <Text align="justify" fontSize={{ base: 's', md: 'sm' }}>
                         Kami menghadirkan penampilan musik dari berbagai genre
                         dan modern. Setiap penampilan dipilih dengan cermat
                         untuk memastikan kualitas terbaik dan memberikan
@@ -111,11 +141,11 @@ const AboutUs = () => {
                         textAlign="center"
                         py={3}
                         fontWeight="semibold"
-                        fontSize="19px"
+                        fontSize={{ base: 'lg', md: '19px' }}
                       >
                         Pameran Seni Visual
                       </Text>
-                      <Text align="justify">
+                      <Text align="justify" fontSize={{ base: 's', md: 'sm' }}>
                         Festivity menampilkan karya-karya seni visual dari
                         seniman lokal dan internasional. Mulai dari lukisan,
                         patung, hingga instalasi seni yang inovatif, semuanya
@@ -135,11 +165,11 @@ const AboutUs = () => {
                         textAlign="center"
                         py={3}
                         fontWeight="semibold"
-                        fontSize="19px"
+                        fontSize={{ base: 'lg', md: '19px' }}
                       >
                         Zona Kuliner
                       </Text>
-                      <Text align="justify">
+                      <Text align="justify" fontSize={{ base: 's', md: 'sm' }}>
                         Kami menyajikan berbagai makanan dan minuman dari
                         penjuru nusantara dan internasional. Setiap hidangan
                         dipilih untuk mencerminkan kekayaan dan keberagaman
@@ -151,9 +181,9 @@ const AboutUs = () => {
               </Grid>
             </Box>
           </Box>
-          <Box mt="50px">
-            <Heading fontSize="xl">Komitmen Kami</Heading>
-            <Text mt="15px" align="justify">
+          <Box mt={{ base: '40px', md: '50px' }}>
+            <Heading fontSize={{ base: 'xl', md: 'xl' }}>Komitmen Kami</Heading>
+            <Text mt="15px" align="justify" fontSize={{ base: 's', md: 'sm' }}>
               Kami berkomitmen untuk memberikan pengalaman yang aman, nyaman,
               dan menyenangkan bagi semua pengunjung. Keselamatan dan
               kesejahteraan Anda adalah prioritas utama kami. Tim kami bekerja
@@ -161,9 +191,11 @@ const AboutUs = () => {
               baik dan sesuai dengan standar tertinggi.
             </Text>
           </Box>
-          <Box mt="50px">
-            <Heading fontSize="xl">Bergabung dengan Kami</Heading>
-            <Text mt="15px" align="justify">
+          <Box mt={{ base: '30px', md: '50px' }}>
+            <Heading fontSize={{ base: 'xl', md: 'xl' }}>
+              Bergabung dengan Kami
+            </Heading>
+            <Text mt="15px" align="justify" fontSize={{ base: 's', md: 'sm' }}>
               Kami mengundang Anda untuk bergabung dengan Festivity dan
               merasakan kebahagiaan yang kami tawarkan. Baik sebagai pengunjung,
               peserta, atau mitra, kontribusi Anda sangat berharga bagi
@@ -172,14 +204,16 @@ const AboutUs = () => {
             </Text>
           </Box>
           <Box mt="50px">
-            <Heading fontSize="xl">Kontak Kami</Heading>
+            <Heading fontSize={{ base: 'xl', md: 'xl' }}>Kontak Kami</Heading>
             <Flex align="center" gap={3} mt="15px">
               <FaSquarePhone size="25px" />
-              <Text>(021)-849562</Text>
+              <Text fontSize={{ base: 'sm', md: 'xl' }}>(021)-849562</Text>
             </Flex>
             <Flex align="center" gap={3}>
               <MdEmail size="25px" />
-              <Text>sales@festivity.com</Text>
+              <Text fontSize={{ base: 'sm', md: 'xl' }}>
+                sales@festivity.com
+              </Text>
             </Flex>
           </Box>
         </Box>
