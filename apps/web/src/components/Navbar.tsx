@@ -18,15 +18,16 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React from 'react';
 import { IoIosSearch } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { PiUserCircleLight } from 'react-icons/pi';
 import Autocomplete from './Autocomplate';
 
 const Navbar = () => {
+  const session = useSession();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const pathname = usePathname();
 
@@ -110,21 +111,29 @@ const Navbar = () => {
                 </Text>
               </Box>
             </Link>
-            <Link href="/login">
-              <Box w="102px" alignContent="center">
-                <Flex
-                  alignItems="center"
-                  gap={2}
-                  _hover={{ color: '#D4CDF4', fontWeight: 'semibold' }}
-                >
-                  <Box w="60px" textAlign="center">
-                    <Text fontSize="lg">Sign In</Text>
-                  </Box>
-
-                  <PiUserCircleLight size="35px" />
-                </Flex>
-              </Box>
-            </Link>
+            {/* <Link href="/login"> */}
+            <Box w="102px" alignContent="center">
+              <Flex
+                alignItems="center"
+                gap={2}
+                _hover={{ color: '#D4CDF4', fontWeight: 'semibold' }}
+              >
+                <Box w="60px" textAlign="center">
+                  <Text fontSize="lg">
+                    {session.data?.user.id ? (
+                      <Box>
+                        <Link href="/">{session.data.user.name}</Link>
+                        <Text onClick={() => signOut()}>Logout</Text>
+                      </Box>
+                    ) : (
+                      <Link href="/login">Login</Link>
+                    )}
+                  </Text>
+                </Box>
+                <PiUserCircleLight size="35px" />
+              </Flex>
+            </Box>
+            {/* </Link> */}
           </Flex>
           <IconButton
             aria-label="Open Menu"

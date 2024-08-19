@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import { Providers } from './providers/ChakraProviders';
 import Footer from '@/components/Footer';
+import NextAuthProvider from './providers/NextAuthProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,9 +22,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <Navbar />
-          {children}
-          <Footer />
+          <NextAuthProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </NextAuthProvider>
         </Providers>
       </body>
     </html>

@@ -11,12 +11,12 @@ model User {
   id              Int           @id @default(autoincrement())
   name            String
   email           String        @unique
-  phone           Int
-  password        Int           @unique
-  address         String
-  profile_picture String
-  referral        String        @unique
-  roles           Role
+  phone           Int?
+  password        String
+  address         String?
+  profile_picture String?
+  referral        String?       @unique
+  roles           Role?
   createAt        DateTime      @default(now())
   updateAt        DateTime      @updatedAt
   userPoints      UserPoint[]

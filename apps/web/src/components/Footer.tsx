@@ -83,7 +83,9 @@ const Footer = () => {
                 >
                   <Text color="whitesmoke">Penyelenggara</Text>
                   <Text color="whitesmoke">Daftar acara</Text>
-                  <Text color="whitesmoke">Buat acara</Text>
+                  <Link href="/dashboard/register">
+                    <Text color="whitesmoke">Buat acara</Text>
+                  </Link>
                   <Text color="whitesmoke"></Text>
                 </Box>
               </Container>
