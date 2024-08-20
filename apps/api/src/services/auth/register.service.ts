@@ -4,14 +4,16 @@ import { User } from '@prisma/client';
 
 export const registerService = async (body: User) => {
   try {
-    const { name, email, password } = body;
+    const { name, email, phone, password, roles } = body;
 
     const existingUser = await prisma.user.findFirst({
-      where: { email },
+      where: {
+        OR: [{ email, phone }],
+      },
     });
 
     if (existingUser) {
-      throw new Error('Email already exist');
+      throw new Error('Email or phone number already exist');
     }
 
     const hashedPassword = await hashPassword(password!);
@@ -21,6 +23,8 @@ export const registerService = async (body: User) => {
         email,
         name,
         password: hashedPassword,
+        phone,
+        roles,
       },
     });
 

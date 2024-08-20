@@ -1,7 +1,11 @@
-import React from "react";
+import AttendeeListPage from '@/features/dashboard/attendee-list';
 
 const AttendeeList = () => {
-  return <div>AttendeeList</div>;
+  return (
+    <div>
+      <AttendeeListPage />
+    </div>
+  );
 };
 
 export default AttendeeList;

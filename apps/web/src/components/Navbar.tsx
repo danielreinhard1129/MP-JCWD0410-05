@@ -109,24 +109,37 @@ const Navbar = () => {
             </Link>
             {/* <Link href="/login"> */}
             <Box w="102px" alignContent="center">
-              <Flex
-                alignItems="center"
-                gap={2}
-                _hover={{ color: '#D4CDF4', fontWeight: 'semibold' }}
-              >
-                <Box w="60px" textAlign="center">
-                  <Text fontSize="lg">
+              <Flex alignItems="center" gap={2}>
+                <Box w="70px" textAlign="center">
+                  <Box fontSize="lg">
                     {session.data?.user.id ? (
                       <Box>
-                        <Link href="/">{session.data.user.name}</Link>
-                        <Text onClick={() => signOut()}>Logout</Text>
+                        <Text
+                          _hover={{ color: '#D4CDF4', fontWeight: 'semibold' }}
+                          cursor="pointer"
+                        >
+                          {session.data.user.name}
+                        </Text>
+                        <Text
+                          onClick={() => signOut()}
+                          cursor="pointer"
+                          _hover={{ color: '#D4CDF4', fontWeight: 'semibold' }}
+                        >
+                          Logout
+                        </Text>
                       </Box>
                     ) : (
-                      <Link href="/login">Login</Link>
+                      <Link href="/login">
+                        <Text
+                          _hover={{ color: '#D4CDF4', fontWeight: 'semibold' }}
+                          fontSize="lg"
+                        >
+                          Login
+                        </Text>
+                      </Link>
                     )}
-                  </Text>
+                  </Box>
                 </Box>
-                <PiUserCircleLight size="35px" />
               </Flex>
             </Box>
             {/* </Link> */}

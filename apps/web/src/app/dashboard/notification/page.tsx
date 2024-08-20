@@ -1,9 +1,11 @@
-import React from 'react'
+import NotificationPage from '@/features/dashboard/notification/page';
 
 const Notification = () => {
   return (
-    <div>Notification</div>
-  )
-}
+    <div>
+      <NotificationPage />
+    </div>
+  );
+};
 
-export default Notification
+export default Notification;

@@ -1,9 +1,12 @@
-import React from 'react'
+import TransactionsPage from '@/features/dashboard/transactions';
+import React from 'react';
 
 const Transactions = () => {
   return (
-    <div>Transactions</div>
-  )
-}
+    <div>
+      <TransactionsPage />
+    </div>
+  );
+};
 
-export default Transactions
+export default Transactions;

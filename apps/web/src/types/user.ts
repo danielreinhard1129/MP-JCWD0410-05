@@ -5,7 +5,7 @@ export interface User {
   roles: Role;
 }
 
-enum Role {
-  Admin,
-  Customer,
+export enum Role {
+  Admin = 'Admin',
+  Customer = 'Customer',
 }

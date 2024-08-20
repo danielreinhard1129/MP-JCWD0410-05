@@ -1,7 +1,11 @@
-import React from 'react';
+import TransactionDetailsPage from '@/features/transaksi/[id]';
 
-const DetailTransaksi = () => {
-  return <div>DetailTransaksi</div>;
+const TransactionDetails = () => {
+  return (
+    <div>
+      <TransactionDetailsPage />
+    </div>
+  );
 };
 
-export default DetailTransaksi;
+export default TransactionDetails;

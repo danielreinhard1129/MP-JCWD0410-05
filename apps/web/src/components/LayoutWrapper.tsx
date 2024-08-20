@@ -10,8 +10,23 @@ import { MdOutlineEventNote } from 'react-icons/md';
 import { PiUserList } from 'react-icons/pi';
 import { TbSettings } from 'react-icons/tb';
 import NavbarDashboard from './NavbarDashboard';
+import { redirect, usePathname } from 'next/navigation';
+import DaftarAdmin from '@/app/dashboard/register/page';
+import { useSession } from 'next-auth/react';
 
 const LayoutWrapper = ({ children }: PropsWithChildren) => {
+  const pathname = usePathname();
+  if (pathname === '/dashboard/register') {
+    return <DaftarAdmin />;
+  }
+  const session = useSession();
+  console.log('userrole' + session.data?.user.roles);
+  console.log('usertokeb' + session.data?.user.token);
+
+  if (session.data?.user.roles === 'CUSTOMER') {
+    return redirect('/dashboard/register');
+  }
+
   return (
     <Flex>
       <Box w="300px" bg="#003249" color="white" px={7}>

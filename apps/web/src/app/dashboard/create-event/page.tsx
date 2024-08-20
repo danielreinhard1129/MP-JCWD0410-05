@@ -1,9 +1,11 @@
-import React from 'react'
+import CreateEventPage from '@/features/dashboard/create-event';
 
 const CreateEvent = () => {
   return (
-    <div>CreateEvent</div>
-  )
-}
+    <div>
+      <CreateEventPage />
+    </div>
+  );
+};
 
-export default CreateEvent
+export default CreateEvent;
