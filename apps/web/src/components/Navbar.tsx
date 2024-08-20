@@ -24,6 +24,7 @@ import { usePathname } from 'next/navigation';
 import { IoIosSearch } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { PiUserCircleLight } from 'react-icons/pi';
+import Autocomplete from './Autocomplate';
 
 const Navbar = () => {
   const session = useSession();
@@ -49,7 +50,7 @@ const Navbar = () => {
           <Link href="/">
             <Image src="/Logo_Festivity_3.svg" w="100px" alt="logo" />
           </Link>
-          <InputGroup w="300px" display={{ base: 'none', md: 'block' }}>
+          {/* <InputGroup w="300px" display={{ base: 'none', md: 'block' }}>
             <InputLeftElement pointerEvents="none" pl="8px">
               <IoIosSearch color="white" size="23px" />
             </InputLeftElement>
@@ -60,7 +61,10 @@ const Navbar = () => {
               textColor="white"
               pl="45px"
             />
-          </InputGroup>
+          </InputGroup> */}
+          <Box w="300px" display={{ base: 'none', md: 'block' }}>
+            <Autocomplete />
+          </Box>
           <Flex
             gap={7}
             align="center"
@@ -161,8 +165,8 @@ const Navbar = () => {
             <DrawerHeader borderBottomWidth="1px">Menu</DrawerHeader>
             <DrawerBody>
               <Flex direction="column" gap={6} mt="24px">
-                <Link href="/">
-                  <InputGroup w="250px">
+                <Link href="/explore">
+                  {/* <InputGroup w="250px">
                     <InputLeftElement pointerEvents="none" pl="8px">
                       <IoIosSearch color="#003249" size="23px" />
                     </InputLeftElement>
@@ -173,7 +177,10 @@ const Navbar = () => {
                       textColor="#003249"
                       pl="45px"
                     />
-                  </InputGroup>
+                  </InputGroup> */}
+                  <Box w="200px">
+                    <Autocomplete />
+                  </Box>
                 </Link>
                 <Link href="/" onClick={onClose}>
                   Home
