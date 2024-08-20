@@ -1,5 +1,6 @@
 'use client';
 import useRegister from '@/hooks/api/auth/useRegister';
+import { Role } from '@/types/user';
 import {
   Box,
   Button,
@@ -15,7 +16,6 @@ import { useFormik } from 'formik';
 import Link from 'next/link';
 import React from 'react';
 import { RegisterAdminSchema } from './schemas/registerAdminSchema';
-import { Role } from '@/types/user';
 
 const RegisterAdminPage = () => {
   const { mutateAsync: register, isPending } = useRegister();
@@ -26,18 +26,20 @@ const RegisterAdminPage = () => {
       password: '',
       phone: '',
       roles: Role.Admin,
+      referral: '',
     },
     validationSchema: RegisterAdminSchema,
     onSubmit: async (values) => {
       await register(values);
     },
   });
+
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   return (
     <Box alignContent={'center'} h="100vh">
       <Container
-        w="md"
+        maxW={{ base: 'sm', md: 'md' }}
         bgColor="#003249"
         p={4}
         display="flex"
@@ -49,7 +51,7 @@ const RegisterAdminPage = () => {
         </Link>
       </Container>
       <Container
-        maxW="md"
+        maxW={{ base: 'sm', md: 'md' }}
         boxShadow="xl"
         bg="white"
         pt="20px"
@@ -59,57 +61,112 @@ const RegisterAdminPage = () => {
         <Text fontSize="2xl" color="#003249" fontWeight="bold" align="center">
           Register as Event Organizer
         </Text>
-
-        {/* ini input nama */}
-        <Input placeholder="Nama" mt="20px" />
-
-        {/* ini input email */}
-        <Input placeholder="Email" mt="8px" />
-
-        {/* ini input telpon */}
-        <Input placeholder="Phone" mt="8px" />
-
-        {/* ini input password */}
-        <InputGroup mt="8px">
+        <form onSubmit={formik.handleSubmit}>
+          {/* ini input nama */}
           <Input
-            pr="4.5rem"
-            type={show ? 'text' : 'password'}
-            placeholder="Password"
+            name="name"
+            type="text"
+            placeholder="Event Organizer's Name"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            mt="20px"
           />
-          <InputRightElement width="100px">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? 'Sembunyikan' : 'Lihat'}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
+          {!!formik.touched.name && !!formik.errors.name ? (
+            <Text color="#E86B32">{formik.errors.name}</Text>
+          ) : null}
 
-        {/* tombol login */}
-        <Link href="/">
-          <Text
+          {/* ini input email */}
+          <Input
+            name="email"
+            type="email"
+            placeholder="E-mail"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            mt="8px"
+          />
+          {!!formik.touched.email && !!formik.errors.email ? (
+            <Text color="#E86B32">{formik.errors.email}</Text>
+          ) : null}
+
+          {/* ini input telpon */}
+          <Input
+            name="phone"
+            type="number"
+            placeholder="Phone number"
+            value={formik.values.phone}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            mt="8px"
+          />
+          {!!formik.touched.phone && !!formik.errors.phone ? (
+            <Text color="#E86B32">{formik.errors.phone}</Text>
+          ) : null}
+          {/* ini input password */}
+          <InputGroup mt="8px">
+            <Input
+              name="password"
+              type={show ? 'text' : 'password'}
+              placeholder="Password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              pr="4.5rem"
+            />
+            <InputRightElement width="100px">
+              <Button h="1.75rem" size="sm" onClick={handleClick}>
+                {show ? 'Sembunyikan' : 'Lihat'}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+          {!!formik.touched.password && !!formik.errors.password ? (
+            <Text color="#E86B32">{formik.errors.password}</Text>
+          ) : null}
+
+          {/* ini input referral */}
+          <Input
+            name="referral"
+            type="string"
+            placeholder="Have referral? Input here"
+            value={formik.values.referral}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            mt="8px"
+          />
+          {!!formik.touched.referral && !!formik.errors.referral ? (
+            <Text color="#E86B32">{formik.errors.referral}</Text>
+          ) : null}
+
+          {/* tombol login */}
+
+          <Button
             color="whitesmoke"
             fontWeight="bold"
             bgColor="#003249"
             borderRadius="lg"
             textAlign={'center'}
+            disabled={isPending}
+            type="submit"
             p="8px"
             mt="25px"
             w="100%"
           >
-            Daftar
+            {isPending ? 'Loading...' : 'Daftar'}
+          </Button>
+          <Text fontSize="xs" textAlign="center" mt="10px" color="#718096">
+            Dengan masuk atau membuat akun, Anda menyetujui perjanjian pengguna
+            kami dan mengakui kebijakan privasi kami
           </Text>
-        </Link>
-        <Text fontSize="xs" textAlign="center" mt="10px" color="#718096">
-          Dengan masuk atau membuat akun, Anda menyetujui perjanjian pengguna
-          kami dan mengakui kebijakan privasi kami
-        </Text>
 
-        {/* tombol daftar */}
-        <Flex mt="15px" justify="center" gap="5px" fontSize="sm">
-          <Text color="#718096">Sudah punya akun?</Text>
-          <Link href="/login">
-            <Text color="#006BB4">Masuk</Text>
-          </Link>
-        </Flex>
+          {/* tombol daftar */}
+          <Flex mt="15px" justify="center" gap="5px" fontSize="sm">
+            <Text color="#718096">Sudah punya akun?</Text>
+            <Link href="/login">
+              <Text color="#006BB4">Masuk</Text>
+            </Link>
+          </Flex>
+        </form>
       </Container>
     </Box>
   );

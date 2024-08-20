@@ -15,11 +15,13 @@ import {
   useColorModeValue,
   VStack,
 } from '@chakra-ui/react';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { FiBell, FiChevronDown } from 'react-icons/fi';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 
 const Navbar = () => {
+  const session = useSession();
   return (
     <Flex boxShadow="md" py={5} justify="space-between" px={7}>
       <Flex align="center" gap={1} _hover={{ color: '#E86B32' }}>
@@ -47,12 +49,10 @@ const Navbar = () => {
               _focus={{ boxShadow: 'none' }}
             >
               <HStack>
-                <Avatar
-                  size={'md'}
-                  src={
-                    'https://images.unsplash.com/photo-1534399315465-2b91232de345?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-                  }
-                />
+                <Avatar boxSize="50px">
+                  {session.data?.user.profile_picture}
+                </Avatar>
+
                 <VStack
                   display={{ base: 'none', md: 'flex' }}
                   alignItems="flex-start"
@@ -60,10 +60,10 @@ const Navbar = () => {
                   ml="2"
                 >
                   <Text fontSize="m" fontWeight="semibold">
-                    Morten Pedersen
+                    {session.data?.user.name}
                   </Text>
                   <Text fontSize="s" color="#E86B32" fontWeight="medium">
-                    Admin
+                    {session.data?.user.roles}
                   </Text>
                 </VStack>
                 <Box display={{ base: 'none', md: 'flex' }}>
@@ -79,7 +79,17 @@ const Navbar = () => {
                 <MenuItem>Profile</MenuItem>
               </Link>
               <MenuDivider />
-              <MenuItem _hover={{ color: '#FF0000' }}>Logout</MenuItem>
+              <MenuItem>
+                {session.data?.user.id ? (
+                  <Text
+                    onClick={() => signOut()}
+                    cursor="pointer"
+                    _hover={{ color: '#FF0000' }}
+                  >
+                    LogOut
+                  </Text>
+                ) : null}
+              </MenuItem>
             </MenuList>
           </Menu>
         </Flex>

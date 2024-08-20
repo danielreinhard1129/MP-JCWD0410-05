@@ -13,7 +13,7 @@ export const loginService = async (body: Pick<User, 'email' | 'password'>) => {
     });
 
     if (!user) {
-      throw new Error('Invalid email address');
+      throw new Error(`Couldn't find your email`);
     }
 
     const isPasswordValid = await comparePassword(password!, user.password!);

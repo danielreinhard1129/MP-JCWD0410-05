@@ -6,6 +6,8 @@ import { Providers } from './providers/ChakraProviders';
 import Footer from '@/components/Footer';
 import NextAuthProvider from './providers/NextAuthProvider';
 import ReactQueryProvider from './providers/ReactQueryProvider';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,6 +30,7 @@ export default function RootLayout({
               <Navbar />
               {children}
               <Footer />
+              <ToastContainer />
             </ReactQueryProvider>
           </NextAuthProvider>
         </Providers>

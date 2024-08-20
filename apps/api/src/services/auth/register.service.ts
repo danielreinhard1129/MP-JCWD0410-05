@@ -1,10 +1,26 @@
 import { hashPassword } from '@/lib/bcrypt';
 import prisma from '@/prisma';
 import { User } from '@prisma/client';
+import { nanoid } from 'nanoid';
 
 export const registerService = async (body: User) => {
   try {
-    const { name, email, phone, password, roles } = body;
+    const { name, email, password, roles, referral } = body;
+    const phone = body.phone.toString();
+
+    let refferedUser;
+
+    if (referral) {
+      const referralCheck = await prisma.user.findFirst({
+        where: { referral },
+      });
+
+      if (!referralCheck) {
+        throw new Error('Invalid referral');
+      }
+
+      refferedUser = referralCheck;
+    }
 
     const existingUser = await prisma.user.findFirst({
       where: {
@@ -25,10 +41,18 @@ export const registerService = async (body: User) => {
         password: hashedPassword,
         phone,
         roles,
+        referral: 'FESTIVITY' + nanoid(5),
       },
     });
 
-    return newUser;
+    if (refferedUser) {
+      
+      //  logic nambahin 10.000 ke refferedUser
+      
+      // claim new reward ke newUser.
+    }
+
+      return newUser;
   } catch (error) {
     throw error;
   }

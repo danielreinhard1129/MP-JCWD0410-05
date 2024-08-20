@@ -126,6 +126,12 @@ const LoginPage = () => {
               <Text color="#006BB4">Buat akun</Text>
             </Link>
           </Flex>
+          <Flex mt="15px" justify="center" gap="5px" fontSize="sm">
+            <Text color="#718096">Anda adalah Event Organizer?</Text>
+            <Link href="/dashboard/register">
+              <Text color="#006BB4">Buat Event</Text>
+            </Link>
+          </Flex>
         </form>
       </Container>
     </Box>
