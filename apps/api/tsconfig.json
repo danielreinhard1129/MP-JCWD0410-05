@@ -13,6 +13,6 @@
     }
   },
   // "include": ["src/**/*"],
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "../web/src/types/pagination.ts"],
   "exclude": ["node_modules"]
 }

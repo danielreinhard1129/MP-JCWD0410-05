@@ -1,23 +1,36 @@
+'use client';
+
+import EventListCard from '@/features/home/components/EventListCard';
+import useGetEvents from '@/hooks/api/event/useGetEvents';
 import {
   Box,
-  Button,
-  ButtonGroup,
-  Card,
-  CardBody,
-  CardFooter,
   Container,
-  Divider,
   Grid,
   GridItem,
   Heading,
-  Image,
-  Stack,
-  Text,
+  Spinner,
 } from '@chakra-ui/react';
-import Link from 'next/link';
-import React from 'react';
+import { useState } from 'react';
 
 const EventList = () => {
+  const [page, setPage] = useState(1);
+  const { data, isPending } = useGetEvents({
+    page,
+    take: 3,
+  });
+
+  if (isPending) {
+    return (
+      <Box display="flex" alignItems="center" justifyContent="center" pb="30px">
+        <Spinner />
+      </Box>
+    );
+  }
+
+  if (!data) {
+    return <h1>Event tidak ditemukan</h1>;
+  }
+
   return (
     <Box>
       <Container maxW="7xl" py={7}>
@@ -29,87 +42,17 @@ const EventList = () => {
             py={{ base: '20px', md: '50px' }}
             flexDirection={{ base: 'column', md: 'row' }}
           >
-            <Box maxW="xs">
-              <Image
-                src="https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Green double couch with wooden legs"
-                borderRadius="25px"
-              />
-              <Stack mt="6" spacing="3">
-                <Box>
-                  <Heading size="md" isTruncated>
-                    Little Orchard Cider and Music Festival 2024
-                  </Heading>
-                  <Text align="justify" isTruncated>
-                    Healey's Cyder Farm
-                  </Text>
-                  <Text>Fri 13 Sep 2024 12:00 PM</Text>
-                </Box>
-              </Stack>
-              <Link href="/explore/id">
-                <Text
-                  fontWeight="semibold"
-                  mt={3}
-                  _hover={{ color: '#E86B32' }}
-                >
-                  See the event...
-                </Text>
-              </Link>
-            </Box>
-            <Box maxW="xs">
-              <Image
-                src="https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Green double couch with wooden legs"
-                borderRadius="25px"
-              />
-              <Stack mt="6" spacing="3">
-                <Box>
-                  <Heading size="md" isTruncated>
-                    Little Orchard Cider and Music Festival 2024
-                  </Heading>
-                  <Text align="justify" isTruncated>
-                    Healey's Cyder Farm
-                  </Text>
-                  <Text>Fri 13 Sep 2024 12:00 PM</Text>
-                </Box>
-              </Stack>
-              <Link href="/explore/id">
-                <Text
-                  fontWeight="semibold"
-                  mt={3}
-                  _hover={{ color: '#E86B32' }}
-                >
-                  See the event...
-                </Text>
-              </Link>
-            </Box>
-            <Box maxW="xs">
-              <Image
-                src="https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Green double couch with wooden legs"
-                borderRadius="25px"
-              />
-              <Stack mt="6" spacing="3">
-                <Box>
-                  <Heading size="md" isTruncated>
-                    Little Orchard Cider and Music Festival 2024
-                  </Heading>
-                  <Text align="justify" isTruncated>
-                    Healey's Cyder Farm
-                  </Text>
-                  <Text>Fri 13 Sep 2024 12:00 PM</Text>
-                </Box>
-              </Stack>
-              <Link href="/explore/id">
-                <Text
-                  fontWeight="semibold"
-                  mt={3}
-                  _hover={{ color: '#E86B32' }}
-                >
-                  See the event...
-                </Text>
-              </Link>
-            </Box>
+            {data?.data.map((event, index) => {
+              return (
+                <EventListCard
+                  key={index}
+                  name={event.name}
+                  thumbnail={event.thumbnail}
+                  location={event.location}
+                  date={event.start_date}
+                />
+              );
+            })}
           </GridItem>
         </Grid>
       </Container>
