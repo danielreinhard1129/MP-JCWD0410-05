@@ -50,19 +50,7 @@ const Navbar = () => {
           <Link href="/">
             <Image src="/Logo_Festivity_3.svg" w="100px" alt="logo" />
           </Link>
-          {/* <InputGroup w="300px" display={{ base: 'none', md: 'block' }}>
-            <InputLeftElement pointerEvents="none" pl="8px">
-              <IoIosSearch color="white" size="23px" />
-            </InputLeftElement>
-            <Input
-              placeholder="Search Events"
-              borderColor="white"
-              borderRadius="25px"
-              textColor="white"
-              pl="45px"
-            />
-          </InputGroup> */}
-          <Box w="300px" display={{ base: 'none', md: 'block' }}>
+          <Box w="350px" display={{ base: 'none', md: 'block' }}>
             <Autocomplete />
           </Box>
           <Flex
