@@ -13,9 +13,9 @@ import {
 import { useFormik } from 'formik';
 import Link from 'next/link';
 import React from 'react';
-import { RegisterSchema } from './schemas/registerSchema';
 import useRegister from '@/hooks/api/auth/useRegister';
 import { Role } from '@/types/user';
+import { RegisterSchema } from './schemas/registerSchema';
 
 const RegisterUserPage = () => {
   const { mutateAsync: register, isPending } = useRegister();
@@ -26,6 +26,7 @@ const RegisterUserPage = () => {
       password: '',
       phone: '',
       roles: Role.Customer,
+      referral: '',
     },
     validationSchema: RegisterSchema,
     onSubmit: async (values) => {
@@ -65,7 +66,7 @@ const RegisterUserPage = () => {
           <Input
             name="name"
             type="text"
-            placeholder="Name"
+            placeholder="Your Name"
             value={formik.values.name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -79,7 +80,7 @@ const RegisterUserPage = () => {
           <Input
             name="email"
             type="email"
-            placeholder="email"
+            placeholder="Your Email"
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -92,8 +93,8 @@ const RegisterUserPage = () => {
           {/* ini input telpon */}
           <Input
             name="phone"
-            type="text"
-            placeholder="phone"
+            type="number"
+            placeholder="Phone Number"
             value={formik.values.phone}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -102,12 +103,13 @@ const RegisterUserPage = () => {
           {!!formik.touched.phone && !!formik.errors.phone ? (
             <Text color="red">{formik.errors.phone}</Text>
           ) : null}
+
           {/* ini input password */}
           <InputGroup mt="8px">
             <Input
               name="password"
               type={show ? 'text' : 'password'}
-              placeholder="password"
+              placeholder="Password"
               value={formik.values.password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -121,6 +123,20 @@ const RegisterUserPage = () => {
           </InputGroup>
           {!!formik.touched.password && !!formik.errors.password ? (
             <Text color="red">{formik.errors.password}</Text>
+          ) : null}
+
+          {/* ini input referral */}
+          <Input
+            name="referral"
+            type="text"
+            placeholder="Have referral code? input here"
+            value={formik.values.referral}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            mt="8px"
+          />
+          {!!formik.touched.referral && !!formik.errors.referral ? (
+            <Text color="red">{formik.errors.referral}</Text>
           ) : null}
 
           {/* tombol login */}

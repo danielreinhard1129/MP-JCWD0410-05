@@ -21,8 +21,8 @@ model User {
   updateAt        DateTime      @updatedAt
   userPoints      UserPoint[]
   transactions    Transaction[]
-  user_rewards    User_Reward[]
-  user_vouchers   UserVoucher[]
+  userRewards     UserReward[]
+  userVouchers    UserVoucher[]
   reviews         Review[]
   events          Event[]
 
@@ -34,15 +34,15 @@ enum Role {
   Customer
 }
 
-model User_Reward {
-  id        Int          @id @default(autoincrement())
-  status    StatusReward
-  createAt  DateTime     @default(now())
-  updateAt  DateTime     @updatedAt
-  user      User         @relation(fields: [userId], references: [id])
-  userId    Int
-  reward_id Reward       @relation(fields: [rewardId], references: [id])
-  rewardId  Int
+model UserReward {
+  id       Int          @id @default(autoincrement())
+  status   StatusReward
+  createAt DateTime     @default(now())
+  updateAt DateTime     @updatedAt
+  user     User         @relation(fields: [userId], references: [id])
+  userId   Int
+  reward   Reward       @relation(fields: [rewardId], references: [id])
+  rewardId Int
 
   @@map("user_rewards")
 }
@@ -53,16 +53,16 @@ enum StatusReward {
 }
 
 model Reward {
-  id           Int           @id @default(autoincrement())
-  name         String
-  code         String        @unique
-  quota        Int
-  nominal      Int
-  claimed      String
-  exp_date     String
-  createAt     DateTime      @default(now())
-  updateAt     DateTime      @updatedAt
-  user_rewards User_Reward[]
+  id          Int          @id @default(autoincrement())
+  name        String
+  code        String       @unique
+  quota       Int
+  nominal     Int
+  claimed     Int
+  exp_date    String
+  createAt    DateTime     @default(now())
+  updateAt    DateTime     @updatedAt
+  userRewards UserReward[]
 
   @@map("rewards")
 }
@@ -94,23 +94,25 @@ model Voucher {
   claimed     String
   nominal     Int
   exp_date    String
-  // event_id (fk)
   createAt    DateTime      @default(now())
   updateAt    DateTime      @updatedAt
   UserVoucher UserVoucher[]
+
+  event   Event @relation(fields: [eventId], references: [id])
+  eventId Int
 
   @@map("vouchers")
 }
 
 model UserPoint {
-  id       Int      @id @default(autoincrement())
-  points   Int
-  exp_date String
-  createAt DateTime @default(now())
-  updateAt DateTime @updatedAt
+  id       Int       @id @default(autoincrement())
+  points   Int       @default(0)
+  exp_date DateTime?
+  createAt DateTime  @default(now())
+  updateAt DateTime  @updatedAt
+  userId   Int       @unique
 
-  user   User @relation(fields: [userId], references: [id])
-  userId Int  @unique
+  user User @relation(fields: [userId], references: [id])
 
   @@map("user_points")
 }
@@ -180,6 +182,7 @@ model Event {
   userId       Int
   transactions Transaction[]
   reviews      Review[]
+  Voucher      Voucher[]
 
   @@map("events")
 }

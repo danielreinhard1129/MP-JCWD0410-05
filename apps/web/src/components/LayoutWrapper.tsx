@@ -20,10 +20,8 @@ const LayoutWrapper = ({ children }: PropsWithChildren) => {
     return <DaftarAdmin />;
   }
   const session = useSession();
-  console.log('userrole' + session.data?.user.roles);
-  console.log('usertokeb' + session.data?.user.token);
 
-  if (session.data?.user.roles === 'CUSTOMER') {
+  if (session.data?.user.roles === 'Customer') {
     return redirect('/dashboard/register');
   }
 

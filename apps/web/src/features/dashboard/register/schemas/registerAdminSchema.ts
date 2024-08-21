@@ -12,4 +12,6 @@ export const RegisterAdminSchema = Yup.object().shape({
     .minUppercase(1)
     .minSymbols(1)
     .min(6),
+  phone: Yup.number().required('Phone number is required').min(10),
+  referral: Yup.string().min(5).max(5),
 });
