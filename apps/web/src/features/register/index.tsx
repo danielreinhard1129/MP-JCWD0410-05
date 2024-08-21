@@ -1,4 +1,6 @@
 'use client';
+import useRegister from '@/hooks/api/auth/useRegister';
+import { Role } from '@/types/user';
 import {
   Box,
   Button,
@@ -26,6 +28,7 @@ const RegisterUserPage = () => {
       password: '',
       phone: '',
       roles: Role.Customer,
+      referral: '',
       referral: '',
     },
     validationSchema: RegisterSchema,
@@ -73,7 +76,7 @@ const RegisterUserPage = () => {
             mt="20px"
           />
           {!!formik.touched.name && !!formik.errors.name ? (
-            <Text color="red">{formik.errors.name}</Text>
+            <Text color="#E86B32">{formik.errors.name}</Text>
           ) : null}
 
           {/* ini input email */}
@@ -87,7 +90,7 @@ const RegisterUserPage = () => {
             mt="8px"
           />
           {!!formik.touched.email && !!formik.errors.email ? (
-            <Text color="red">{formik.errors.email}</Text>
+            <Text color="#E86B32">{formik.errors.email}</Text>
           ) : null}
 
           {/* ini input telpon */}
@@ -101,7 +104,7 @@ const RegisterUserPage = () => {
             mt="8px"
           />
           {!!formik.touched.phone && !!formik.errors.phone ? (
-            <Text color="red">{formik.errors.phone}</Text>
+            <Text color="#E86B32">{formik.errors.phone}</Text>
           ) : null}
 
           {/* ini input password */}
@@ -109,6 +112,7 @@ const RegisterUserPage = () => {
             <Input
               name="password"
               type={show ? 'text' : 'password'}
+              placeholder="Password"
               placeholder="Password"
               value={formik.values.password}
               onChange={formik.handleChange}

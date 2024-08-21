@@ -13,6 +13,7 @@ interface RegisterPayload {
   password: string;
   phone: string;
   roles: Role;
+  referral: string;
 }
 
 const useRegister = () => {

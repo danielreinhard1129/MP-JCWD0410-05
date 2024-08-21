@@ -27,6 +27,7 @@ const RegisterAdminPage = () => {
       phone: '',
       roles: Role.Admin,
       referral: '',
+      referral: '',
     },
     validationSchema: RegisterAdminSchema,
     onSubmit: async (values) => {
@@ -34,11 +35,13 @@ const RegisterAdminPage = () => {
     },
   });
 
+
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   return (
     <Box alignContent={'center'} h="100vh">
       <Container
+        maxW={{ base: 'sm', md: 'md' }}
         maxW={{ base: 'sm', md: 'md' }}
         bgColor="#003249"
         p={4}
@@ -51,6 +54,7 @@ const RegisterAdminPage = () => {
         </Link>
       </Container>
       <Container
+        maxW={{ base: 'sm', md: 'md' }}
         maxW={{ base: 'sm', md: 'md' }}
         boxShadow="xl"
         bg="white"
@@ -140,6 +144,9 @@ const RegisterAdminPage = () => {
           {/* tombol login */}
 
           <Button
+          {/* tombol login */}
+
+          <Button
             color="whitesmoke"
             fontWeight="bold"
             bgColor="#003249"
@@ -147,10 +154,18 @@ const RegisterAdminPage = () => {
             textAlign={'center'}
             disabled={isPending}
             type="submit"
+            disabled={isPending}
+            type="submit"
             p="8px"
             mt="25px"
             w="100%"
           >
+            {isPending ? 'Loading...' : 'Daftar'}
+          </Button>
+          <Text fontSize="xs" textAlign="center" mt="10px" color="#718096">
+            Dengan masuk atau membuat akun, Anda menyetujui perjanjian pengguna
+            kami dan mengakui kebijakan privasi kami
+          </Text>
             {isPending ? 'Loading...' : 'Daftar'}
           </Button>
           <Text fontSize="xs" textAlign="center" mt="10px" color="#718096">

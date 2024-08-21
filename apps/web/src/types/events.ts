@@ -1,11 +1,10 @@
 export interface Event {
   id: number;
-  title: string;
-  description: string;
-  category: string;
-  content: string;
+  name: string;
   thumbnail: string;
-  userId: number;
+  location: string;
+  start_date: string;
+  end_date: string;
   createdAt: Date;
   updatedAt: Date;
   user: { name: string };

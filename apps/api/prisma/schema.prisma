@@ -15,10 +15,10 @@ model User {
   password        String
   address         String?
   profile_picture String?
-  referral        String?       @unique
+  referral        String        @unique
   roles           Role?
-  createAt        DateTime      @default(now())
-  updateAt        DateTime      @updatedAt
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
   userPoints      UserPoint[]
   transactions    Transaction[]
   userRewards     UserReward[]
@@ -68,12 +68,12 @@ model Reward {
 }
 
 model UserVoucher {
-  id       Int           @id @default(autoincrement())
-  status   StatusVoucher
-  createAt DateTime      @default(now())
-  updateAt DateTime      @updatedAt
-  user     User          @relation(fields: [userId], references: [id])
-  userId   Int
+  id        Int           @id @default(autoincrement())
+  status    StatusVoucher
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  user      User          @relation(fields: [userId], references: [id])
+  userId    Int
 
   voucher   Voucher @relation(fields: [voucherId], references: [id])
   voucherId Int
@@ -101,6 +101,9 @@ model Voucher {
   event   Event @relation(fields: [eventId], references: [id])
   eventId Int
 
+  event   Event @relation(fields: [eventId], references: [id])
+  eventId Int
+
   @@map("vouchers")
 }
 
@@ -118,15 +121,15 @@ model UserPoint {
 }
 
 model Review {
-  id       Int      @id @default(autoincrement())
-  comment  String
-  rating   String
-  createAt DateTime @default(now())
-  updateAt DateTime @updatedAt
-  user     User     @relation(fields: [userId], references: [id])
-  userId   Int
-  event_id Event    @relation(fields: [eventId], references: [id])
-  eventId  Int
+  id        Int      @id @default(autoincrement())
+  comment   String
+  rating    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  event_id  Event    @relation(fields: [eventId], references: [id])
+  eventId   Int
 
   @@map("reviews")
 }
@@ -175,13 +178,14 @@ model Event {
   description String
   quota       String
   booked      String
-  createAt    DateTime @default(now())
-  updateAt    DateTime @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   user         User          @relation(fields: [userId], references: [id])
   userId       Int
   transactions Transaction[]
   reviews      Review[]
+  Voucher      Voucher[]
   Voucher      Voucher[]
 
   @@map("events")
