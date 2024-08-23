@@ -9,5 +9,6 @@ export const LoginSchema = Yup.object().shape({
     .minLowercase(1)
     .minNumbers(1)
     .minUppercase(1)
+    .minSymbols(1)
     .min(6),
 });

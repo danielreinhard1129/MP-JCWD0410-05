@@ -127,7 +127,7 @@ const LoginPage = () => {
             </Link>
           </Flex>
           <Flex mt="15px" justify="center" gap="5px" fontSize="sm">
-            <Text color="#718096">Anda adalah Event Organizer?</Text>
+            <Text color="#718096">Anda Event Organizer?</Text>
             <Link href="/dashboard/register">
               <Text color="#006BB4">Buat Event</Text>
             </Link>

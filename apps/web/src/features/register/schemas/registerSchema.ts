@@ -13,5 +13,5 @@ export const RegisterSchema = Yup.object().shape({
     .minSymbols(1)
     .min(6),
   phone: Yup.number().required('Phone number is required').min(10),
-  referral: Yup.string().min(14).max(14),
+  referral: Yup.string().min(5).max(5),
 });

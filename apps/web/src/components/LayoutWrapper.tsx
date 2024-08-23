@@ -19,6 +19,11 @@ const LayoutWrapper = ({ children }: PropsWithChildren) => {
   if (pathname === '/dashboard/register') {
     return <DaftarAdmin />;
   }
+  const session = useSession();
+
+  if (session.data?.user.roles === 'Customer') {
+    return redirect('/dashboard/register');
+  }
 
   return (
     <Flex>

@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  Avatar,
   Box,
   Container,
   Drawer,
@@ -15,6 +16,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Stack,
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
@@ -100,12 +102,13 @@ const Navbar = () => {
               </Box>
             </Link>
             {/* <Link href="/login"> */}
-            <Box w="102px" alignContent="center">
+            <Box w="100%" alignContent="center">
               <Flex alignItems="center" gap={2}>
-                <Box w="70px" textAlign="center">
-                  <Box fontSize="lg">
+                <Box w="100%" textAlign="center">
+                  <Stack fontSize="lg">
                     {session.data?.user.id ? (
-                      <Box>
+                      <Flex gap={7} align="center">
+                        <Avatar></Avatar>
                         <Text
                           _hover={{ color: '#D4CDF4', fontWeight: 'semibold' }}
                           cursor="pointer"
@@ -119,7 +122,7 @@ const Navbar = () => {
                         >
                           Logout
                         </Text>
-                      </Box>
+                      </Flex>
                     ) : (
                       <Link href="/login">
                         <Text
@@ -130,7 +133,7 @@ const Navbar = () => {
                         </Text>
                       </Link>
                     )}
-                  </Box>
+                  </Stack>
                 </Box>
               </Flex>
             </Box>

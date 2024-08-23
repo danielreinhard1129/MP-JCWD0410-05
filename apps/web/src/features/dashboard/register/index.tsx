@@ -1,6 +1,4 @@
 'use client';
-import useRegister from '@/hooks/api/auth/useRegister';
-import { Role } from '@/types/user';
 import {
   Box,
   Button,
@@ -15,6 +13,8 @@ import {
 import { useFormik } from 'formik';
 import Link from 'next/link';
 import React from 'react';
+import useRegister from '@/hooks/api/auth/useRegister';
+import { Role } from '@/types/user';
 import { RegisterAdminSchema } from './schemas/registerAdminSchema';
 
 const RegisterAdminPage = () => {
@@ -27,6 +27,7 @@ const RegisterAdminPage = () => {
       phone: '',
       roles: Role.Admin,
       referral: '',
+      referral: '',
     },
     validationSchema: RegisterAdminSchema,
     onSubmit: async (values) => {
@@ -34,11 +35,13 @@ const RegisterAdminPage = () => {
     },
   });
 
+
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   return (
     <Box alignContent={'center'} h="100vh">
       <Container
+        maxW={{ base: 'sm', md: 'md' }}
         maxW={{ base: 'sm', md: 'md' }}
         bgColor="#003249"
         p={4}
@@ -51,6 +54,7 @@ const RegisterAdminPage = () => {
         </Link>
       </Container>
       <Container
+        maxW={{ base: 'sm', md: 'md' }}
         maxW={{ base: 'sm', md: 'md' }}
         boxShadow="xl"
         bg="white"
@@ -66,42 +70,42 @@ const RegisterAdminPage = () => {
           <Input
             name="name"
             type="text"
-            placeholder="Event Organizer's Name"
+            placeholder="Your Name"
             value={formik.values.name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             mt="20px"
           />
           {!!formik.touched.name && !!formik.errors.name ? (
-            <Text color="#E86B32">{formik.errors.name}</Text>
+            <Text color="red">{formik.errors.name}</Text>
           ) : null}
 
           {/* ini input email */}
           <Input
             name="email"
             type="email"
-            placeholder="E-mail"
+            placeholder="Your Email"
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             mt="8px"
           />
           {!!formik.touched.email && !!formik.errors.email ? (
-            <Text color="#E86B32">{formik.errors.email}</Text>
+            <Text color="red">{formik.errors.email}</Text>
           ) : null}
 
           {/* ini input telpon */}
           <Input
             name="phone"
             type="number"
-            placeholder="Phone number"
+            placeholder="Phone Number"
             value={formik.values.phone}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             mt="8px"
           />
           {!!formik.touched.phone && !!formik.errors.phone ? (
-            <Text color="#E86B32">{formik.errors.phone}</Text>
+            <Text color="red">{formik.errors.phone}</Text>
           ) : null}
           {/* ini input password */}
           <InputGroup mt="8px">
@@ -121,23 +125,25 @@ const RegisterAdminPage = () => {
             </InputRightElement>
           </InputGroup>
           {!!formik.touched.password && !!formik.errors.password ? (
-            <Text color="#E86B32">{formik.errors.password}</Text>
+            <Text color="red">{formik.errors.password}</Text>
           ) : null}
 
-          {/* ini input referral */}
           <Input
             name="referral"
-            type="string"
-            placeholder="Have referral? Input here"
+            type="text"
+            placeholder="Have referral code? input here"
             value={formik.values.referral}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             mt="8px"
           />
           {!!formik.touched.referral && !!formik.errors.referral ? (
-            <Text color="#E86B32">{formik.errors.referral}</Text>
+            <Text color="red">{formik.errors.referral}</Text>
           ) : null}
 
+          {/* tombol login */}
+
+          <Button
           {/* tombol login */}
 
           <Button
@@ -146,6 +152,8 @@ const RegisterAdminPage = () => {
             bgColor="#003249"
             borderRadius="lg"
             textAlign={'center'}
+            disabled={isPending}
+            type="submit"
             disabled={isPending}
             type="submit"
             p="8px"
@@ -158,12 +166,25 @@ const RegisterAdminPage = () => {
             Dengan masuk atau membuat akun, Anda menyetujui perjanjian pengguna
             kami dan mengakui kebijakan privasi kami
           </Text>
+            {isPending ? 'Loading...' : 'Daftar'}
+          </Button>
+          <Text fontSize="xs" textAlign="center" mt="10px" color="#718096">
+            Dengan masuk atau membuat akun, Anda menyetujui perjanjian pengguna
+            kami dan mengakui kebijakan privasi kami
+          </Text>
 
           {/* tombol daftar */}
           <Flex mt="15px" justify="center" gap="5px" fontSize="sm">
             <Text color="#718096">Sudah punya akun?</Text>
             <Link href="/login">
               <Text color="#006BB4">Masuk</Text>
+            </Link>
+          </Flex>
+          <Flex mt="15px" justify="center" gap="5px" fontSize="sm">
+            <Text color="#718096">Mau beli tiket?</Text>
+            <Link href="/register">
+              {' '}
+              <Text color="#006BB4">Klik disini</Text>
             </Link>
           </Flex>
         </form>
