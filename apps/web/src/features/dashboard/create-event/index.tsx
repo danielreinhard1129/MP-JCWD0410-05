@@ -277,14 +277,14 @@ const CreateEventPage = () => {
             error={formik.errors.description}
           />
         </Box>
-        <Box maxW="6xl" mx="auto">
+        {/* <Box maxW="6xl" mx="auto">
           <Text fontWeight="semibold">Syarat & Ketentuan</Text>
           <RichTextEditor
             onChange={(html: string) => formik.setFieldValue('content', html)}
             isError={Boolean(formik.errors.content)}
             value={formik.values.content}
           />
-        </Box>
+        </Box> */}
         <Box pb={5} textAlign="end">
           <Button type="submit" colorScheme="teal" disabled={isPending}>
             {isPending ? 'Loading...' : 'Submit'}

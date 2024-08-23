@@ -7,7 +7,6 @@ export const CreateEventSchema = Yup.object().shape({
   price: Yup.number().required('price is required'),
   start_date: Yup.string().required('start date is required'),
   end_date: Yup.string().required('end date is required'),
-  content: Yup.string().required('content is required'),
   description: Yup.string().required('deskripsi is required'),
   quota: Yup.number().required('quota is required'),
 });

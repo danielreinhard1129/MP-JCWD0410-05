@@ -1,44 +1,19 @@
 import prisma from '@/prisma';
-import { Prisma } from '@prisma/client';
 
-interface GetEventService {
-  page: number;
-  take: number;
-  sortBy: string;
-  sortOrder: string;
-  search: string;
-  location?: string;
-  category?: string;
-}
-
-export const getEventsService = async (query: GetEventService) => {
+export const getEventService = async (id: number) => {
   try {
-    const { take, page, sortBy, sortOrder, search } = query;
+    const event = await prisma.event.findFirst({
+      where: { id },
+      include: {
+        user: { select: { name: true } },
+      },
+    });
 
-    const whereClause: Prisma.EventWhereInput = {};
-
-    if (search) {
-      whereClause.name = {
-        contains: search,
-      };
+    if (!event) {
+      throw new Error('Invalid event id');
     }
 
-    const events = await prisma.event.findMany({
-      where: whereClause,
-      skip: (page - 1) * take,
-      take: take,
-      orderBy: { [sortBy]: sortOrder },
-      include: { user: { select: { name: true } } },
-    });
-
-    const count = await prisma.event.count({
-      where: whereClause,
-    });
-
-    return {
-      data: events,
-      meta: { page, take, total: count },
-    };
+    return event;
   } catch (error) {
     throw error;
   }

@@ -16,13 +16,11 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { signOut, useSession } from 'next-auth/react';
-import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { FiBell, FiChevronDown } from 'react-icons/fi';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 
 const Navbar = () => {
-  const session = useSession();
   const session = useSession();
   return (
     <Flex boxShadow="md" py={5} justify="space-between" px={7}>

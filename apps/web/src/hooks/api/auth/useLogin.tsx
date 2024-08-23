@@ -1,10 +1,9 @@
 'use client';
 
 import useAxios from '@/hooks/useAxios';
-import { Role } from '@/types/user';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
