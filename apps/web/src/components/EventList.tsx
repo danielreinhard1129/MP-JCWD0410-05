@@ -49,7 +49,8 @@ const EventList = () => {
                   name={event.name}
                   thumbnail={event.thumbnail}
                   location={event.location}
-                  date={event.start_date}
+                  start_date={event.start_date}
+                  end_date={event.end_date}
                 />
               );
             })}
