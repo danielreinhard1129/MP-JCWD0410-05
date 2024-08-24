@@ -1,7 +1,8 @@
+'use client';
+// import EventList from '@/components/EventList';
 import {
   Box,
   Container,
-  Flex,
   Grid,
   GridItem,
   Heading,
@@ -11,68 +12,32 @@ import {
   Text,
 } from '@chakra-ui/react';
 import Link from 'next/link';
-import { BsBookmarkStar } from 'react-icons/bs';
-import { HiOutlineMusicalNote } from 'react-icons/hi2';
-import { LiaTheaterMasksSolid } from 'react-icons/lia';
-import { PiBowlFoodLight } from 'react-icons/pi';
 import { TfiLocationPin } from 'react-icons/tfi';
+import AllEventList from './AllEvents';
+import { useState } from 'react';
+import useGetEvents from '@/hooks/api/event/useGetEvents';
+import EventListCard from '../home/components/EventListCard';
 
 const ExplorePage = () => {
+  const [selectedLocation, setSelectedLocation] = useState('');
+  const { data, isPending } = useGetEvents({
+    take: 12,
+    location: selectedLocation,
+  });
+  const handleSelectLocation = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    const value = event.target.value;
+    if (value === 'all') {
+      setSelectedLocation('');
+    } else {
+      setSelectedLocation(value);
+    }
+  };
   return (
     <Box>
       <Container maxW={{ base: '100%', md: '7xl' }}>
         <Box pt={{ base: '20px', md: '40px' }} pb="100px">
-          {/* ini kategori */}
-          <Flex gap={6} color="#718096">
-            <Link href="/explore">
-              <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                _hover={{ color: '#E86B32' }}
-              >
-                <BsBookmarkStar size="30px" />
-                <Text fontSize="md">Semua</Text>
-              </Box>
-            </Link>
-            <Link href="/explore">
-              <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                _hover={{ color: '#E86B32' }}
-              >
-                <HiOutlineMusicalNote size="30px" />
-                <Text fontSize="md">Festival</Text>
-              </Box>
-            </Link>
-            <Link href="/explore">
-              <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                _hover={{ color: '#E86B32' }}
-              >
-                <LiaTheaterMasksSolid size="30px" />
-                <Text fontSize="md">Seni</Text>
-              </Box>
-            </Link>
-            <Link href="/explore">
-              <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                _hover={{ color: '#E86B32' }}
-              >
-                <PiBowlFoodLight size="30px" />
-                <Text fontSize="md">Kuliner</Text>
-              </Box>
-            </Link>
-          </Flex>
           {/* ini tempat */}
           <Box gap={7} position="relative" py={4}>
             <Text fontWeight="bold" w="156px" fontSize="xl">
@@ -86,111 +51,49 @@ const ExplorePage = () => {
               placeholder=""
               borderRadius="20px"
               mt="10px"
+              onChange={handleSelectLocation}
             >
-              <option value="option1">Jakarta</option>
-              <option value="option2">Bandung</option>
-              <option value="option3">Yogyakarta</option>
-              <option value="option4">Malang</option>
-              <option value="option5">Surabaya</option>
+              <option value="all">All</option>
+              <option value="Jakarta">Jakarta</option>
+              <option value="Bandung">Bandung</option>
+              <option value="Jogja">Jogja</option>
+              <option value="Malang">Malang</option>
+              <option value="Surabaya">Surabaya</option>
             </Select>
           </Box>
-          {/* ini card */}
-          <Grid justifyItems={{ base: 'center', md: 'center' }}>
-            <GridItem
-              display="flex"
-              gap={{ base: '40px', md: '48px' }}
-              py={{ base: '20px', md: '20px' }}
-              flexDirection={{ base: 'column', md: 'row' }}
-            >
-              <Box maxW={{ base: '350px', md: 'sm' }}>
-                <Link href="/explore/id">
-                  <Image
-                    src="https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Green double couch with wooden legs"
-                    borderRadius="25px"
-                  />
-                </Link>
-                <Stack mt={{ base: '3', md: '6' }} spacing="3">
-                  <Box>
-                    <Heading size="md" isTruncated>
-                      Little Orchard Cider and Music Festival 2024
-                    </Heading>
-                    <Text align="justify" isTruncated>
-                      Healey's Cyder Farm
-                    </Text>
-                    <Text>Fri 13 Sep 2024 12:00 PM</Text>
-                  </Box>
-                </Stack>
-                <Link href="/explore/id">
-                  <Text
-                    fontWeight="semibold"
-                    mt={{ base: '1', md: '3' }}
-                    _hover={{ color: '#E86B32' }}
-                  >
-                    See the event...
-                  </Text>
-                </Link>
-              </Box>
-              <Box maxW={{ base: '350px', md: 'sm' }}>
-                <Link href="/explore/id">
-                  <Image
-                    src="https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Green double couch with wooden legs"
-                    borderRadius="25px"
-                  />
-                </Link>
-                <Stack mt={{ base: '3', md: '6' }} spacing="3">
-                  <Box>
-                    <Heading size="md" isTruncated>
-                      Little Orchard Cider and Music Festival 2024
-                    </Heading>
-                    <Text align="justify" isTruncated>
-                      Healey's Cyder Farm
-                    </Text>
-                    <Text>Fri 13 Sep 2024 12:00 PM</Text>
-                  </Box>
-                </Stack>
-                <Link href="/explore/id">
-                  <Text
-                    fontWeight="semibold"
-                    mt={{ base: '1', md: '3' }}
-                    _hover={{ color: '#E86B32' }}
-                  >
-                    See the event...
-                  </Text>
-                </Link>
-              </Box>
-              <Box maxW={{ base: '350px', md: 'sm' }}>
-                <Link href="/explore/id">
-                  <Image
-                    src="https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Green double couch with wooden legs"
-                    borderRadius="25px"
-                  />
-                </Link>
-                <Stack mt={{ base: '3', md: '6' }} spacing="3">
-                  <Box>
-                    <Heading size="md" isTruncated>
-                      Little Orchard Cider and Music Festival 2024
-                    </Heading>
-                    <Text align="justify" isTruncated>
-                      Healey's Cyder Farm
-                    </Text>
-                    <Text>Fri 13 Sep 2024 12:00 PM</Text>
-                  </Box>
-                </Stack>
-                <Link href="/explore/id">
-                  <Text
-                    fontWeight="semibold"
-                    mt={{ base: '1', md: '3' }}
-                    _hover={{ color: '#E86B32' }}
-                  >
-                    See the event...
-                  </Text>
-                </Link>
-              </Box>
-            </GridItem>
-          </Grid>
+          {/* semua event */}
+          <Box>
+            <Container maxW="7xl" py={7}>
+              <Heading textAlign="center">FESTIVALS</Heading>
+              <Grid
+                justifyContent={{ base: 'center', md: 'center' }}
+                templateColumns={{ base: '1fr', md: '1fr 1fr 1fr' }}
+                gap={5}
+              >
+                {data?.data.map((event, index) => {
+                  return (
+                    <Link href={`/explore/${event.id}`}>
+                      <GridItem
+                        display="flex"
+                        gap={{ base: '30px', md: '50px' }}
+                        py={{ base: '20px', md: '40px' }}
+                        flexDirection={{ base: 'column', md: 'row' }}
+                      >
+                        <EventListCard
+                          key={index}
+                          name={event.name}
+                          thumbnail={event.thumbnail}
+                          location={event.location}
+                          start_date={event.start_date}
+                          end_date={event.end_date}
+                        />
+                      </GridItem>
+                    </Link>
+                  );
+                })}
+              </Grid>
+            </Container>
+          </Box>
         </Box>
       </Container>
     </Box>

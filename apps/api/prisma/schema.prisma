@@ -171,14 +171,15 @@ model Event {
   id          Int      @id @default(autoincrement())
   name        String
   location    String
-  start_date  String
-  end_date    String
-  dicount     String
-  price       String
+  start_date  DateTime
+  end_date    DateTime
+  discount    Int
+  price       Int
   thumbnail   String
-  description String
-  quota       String
-  booked      String
+  description String   @db.LongText()
+  content     String   @db.LongText()
+  quota       Int
+  booked      Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

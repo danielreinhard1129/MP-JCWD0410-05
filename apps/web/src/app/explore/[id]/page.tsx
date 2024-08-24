@@ -1,9 +1,9 @@
 import DetailEventPage from '@/features/explore/[id]';
 
-const DetailEvent = () => {
+const DetailEvent = ({ params }: { params: { id: string } }) => {
   return (
     <div>
-      <DetailEventPage />
+      <DetailEventPage eventId={Number(params.id)} />
     </div>
   );
 };

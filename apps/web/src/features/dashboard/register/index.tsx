@@ -157,6 +157,7 @@ const RegisterAdminPage = () => {
             Dengan masuk atau membuat akun, Anda menyetujui perjanjian pengguna
             kami dan mengakui kebijakan privasi kami
           </Text>
+          {isPending ? 'Loading...' : 'Daftar'}
 
           {/* tombol daftar */}
           <Flex mt="15px" justify="center" gap="5px" fontSize="sm">
