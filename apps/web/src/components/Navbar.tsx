@@ -30,6 +30,7 @@ import Autocomplete from './Autocomplate';
 
 const Navbar = () => {
   const session = useSession();
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const pathname = usePathname();
 
@@ -37,6 +38,8 @@ const Navbar = () => {
     pathname === '/login' ||
     pathname === '/register' ||
     pathname === '/lupa-password' ||
+    pathname === '/reset-password' ||
+    pathname === '/ubah-password' ||
     pathname.startsWith('/dashboard')
   ) {
     return null;
@@ -108,7 +111,9 @@ const Navbar = () => {
                   <Stack fontSize="lg">
                     {session.data?.user.id ? (
                       <Flex gap={7} align="center">
-                        <Avatar></Avatar>
+                        <Link href="/profile">
+                          <Avatar src={session.data.user.profile_picture} />
+                        </Link>
                         <Text
                           _hover={{ color: '#D4CDF4', fontWeight: 'semibold' }}
                           cursor="pointer"

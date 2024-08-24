@@ -16,13 +16,11 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { signOut, useSession } from 'next-auth/react';
-import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { FiBell, FiChevronDown } from 'react-icons/fi';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 
 const Navbar = () => {
-  const session = useSession();
   const session = useSession();
   return (
     <Flex boxShadow="md" py={5} justify="space-between" px={7}>
@@ -51,9 +49,7 @@ const Navbar = () => {
               _focus={{ boxShadow: 'none' }}
             >
               <HStack>
-                <Avatar size={'md'}>
-                  {session.data?.user.profile_picture}
-                </Avatar>
+                <Avatar size={'md'} src={session.data?.user.profile_picture} />
 
                 <VStack
                   display={{ base: 'none', md: 'flex' }}
@@ -63,10 +59,8 @@ const Navbar = () => {
                 >
                   <Text fontSize="m" fontWeight="semibold">
                     {session.data?.user.name}
-                    {session.data?.user.name}
                   </Text>
                   <Text fontSize="s" color="#E86B32" fontWeight="medium">
-                    {session.data?.user.roles}
                     {session.data?.user.roles}
                   </Text>
                 </VStack>

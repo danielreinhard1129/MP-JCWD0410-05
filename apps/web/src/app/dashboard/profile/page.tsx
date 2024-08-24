@@ -1,11 +1,11 @@
-import ProfilePage from '@/features/dashboard/profile';
+import ProfileAdminPage from '@/features/dashboard/profile';
 
-const Profile = () => {
+const ProfileAdmin = () => {
   return (
     <div>
-      <ProfilePage />
+      <ProfileAdminPage />
     </div>
   );
 };
 
-export default Profile;
+export default ProfileAdmin;

@@ -31,7 +31,6 @@ export default function RootLayout({
               {children}
               <Footer />
               <ToastContainer />
-              <ToastContainer />
             </ReactQueryProvider>
           </NextAuthProvider>
         </Providers>

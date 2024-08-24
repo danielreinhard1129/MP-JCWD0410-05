@@ -1,6 +1,5 @@
 'use client';
 
-import useProfile from '@/hooks/profile/useProfile';
 import {
   Box,
   Button,
@@ -15,16 +14,17 @@ import {
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
 import { useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation';
 import { ChangeEvent, useRef, useState } from 'react';
 import { MdOutlineFileUpload } from 'react-icons/md';
-import { ProfileAdminSchema } from './schemas/profileAdminSchema';
+import { ProfileSchema } from './schemas/profileSchema';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
+import useProfile from '@/hooks/profile/useProfile';
 import Link from 'next/link';
 
-const ProfileAdminPage = () => {
+const ProfilePage = () => {
   const session = useSession();
-  if (session?.data?.user.roles !== 'Admin') {
+  if (session?.data?.user.roles !== 'Customer') {
     return redirect('/login');
   }
   const [iconColor, setIconColor] = useState('#B8BACF');
@@ -55,7 +55,7 @@ const ProfileAdminPage = () => {
       phone: session.data?.user.phone || '',
       address: session.data?.user.address || '',
     },
-    validationSchema: ProfileAdminSchema,
+    validationSchema: ProfileSchema,
     onSubmit: async (values) => {
       await profile(values);
     },
@@ -64,7 +64,7 @@ const ProfileAdminPage = () => {
 
   return (
     <Box>
-      <Container maxW="6xl" mt="70px">
+      <Container maxW="6xl" my="70px">
         <Grid templateColumns="1fr 3fr">
           <GridItem mx="auto">
             <Box
@@ -97,8 +97,9 @@ const ProfileAdminPage = () => {
                 ref={photoRef}
               />
               <MdOutlineFileUpload size="25px" color={iconColor} />
-              <Text color={iconColor}>Logo</Text>
+              <Text color={iconColor}>Profile Picture</Text>
             </Box>
+
             {selectedImage && (
               <Flex align="center" justify="center" mt={7}>
                 <Button onClick={removeSelectedImage}>Remove Photo</Button>
@@ -109,15 +110,16 @@ const ProfileAdminPage = () => {
             <form onSubmit={formik.handleSubmit}>
               <FormControl isRequired>
                 <FormLabel>
-                  Nama Organizer
+                  Nama Lengkap
                   <Text as="span" color="red.500" ml="1"></Text>
                 </FormLabel>
                 <Input
-                  placeholder="Nama Organizer"
+                  placeholder="Nama Lengkap"
                   name="name"
                   value={formik.values.name}
                   onChange={formik.handleChange}
                 />
+
                 <FormLabel mt={7}>
                   Email
                   <Text as="span" color="red.500" ml="1"></Text>
@@ -176,4 +178,4 @@ const ProfileAdminPage = () => {
   );
 };
 
-export default ProfileAdminPage;
+export default ProfilePage;

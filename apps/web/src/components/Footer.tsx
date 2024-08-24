@@ -21,6 +21,7 @@ const Footer = () => {
     pathname === '/login' ||
     pathname === '/register' ||
     pathname === '/lupa-password' ||
+    pathname === '/reset-password' ||
     pathname.startsWith('/dashboard')
   ) {
     return null;

@@ -1,6 +1,4 @@
 'use client';
-import useRegister from '@/hooks/api/auth/useRegister';
-import { Role } from '@/types/user';
 import {
   Box,
   Button,
@@ -28,7 +26,6 @@ const RegisterUserPage = () => {
       password: '',
       phone: '',
       roles: Role.Customer,
-      referral: '',
       referral: '',
     },
     validationSchema: RegisterSchema,
@@ -112,7 +109,6 @@ const RegisterUserPage = () => {
             <Input
               name="password"
               type={show ? 'text' : 'password'}
-              placeholder="Password"
               placeholder="Password"
               value={formik.values.password}
               onChange={formik.handleChange}

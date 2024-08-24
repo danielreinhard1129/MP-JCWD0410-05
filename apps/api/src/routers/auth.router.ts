@@ -24,12 +24,17 @@ export class AuthRouter {
   private initializeRoutes(): void {
     this.router.post('/register', this.authController.register);
     this.router.post('/login', this.authController.login);
-    // this.router.post('/forgot-password', this.authController.forgotPassword);
-    // this.router.patch(
-    //   '/reset-password',
-    //   verifyToken,
-    //   this.authController.resetPassword,
-    // );
+    this.router.post('/forgot-password', this.authController.forgotPassword);
+    this.router.patch(
+      '/reset-password',
+      verifyToken,
+      this.authController.resetPassword,
+    );
+    this.router.patch(
+      '/change-password',
+      verifyToken,
+      this.authController.resetPassword,
+    );
   }
 
   getRouter(): Router {

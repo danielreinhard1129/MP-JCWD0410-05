@@ -3,28 +3,28 @@
 import useAxios from '@/hooks/useAxios';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
-interface LoginPayload {
-  email: string;
+interface ChangePasswordPayload {
   password: string;
+  confirmPassword: string;
 }
 
-const useLogin = () => {
+const useChangePassword = () => {
   const router = useRouter();
   const { axiosInstance } = useAxios();
 
   return useMutation({
-    mutationFn: async (payload: LoginPayload) => {
-      const { data } = await axiosInstance.post('/auth/login', payload);
+    mutationFn: async (payload: ChangePasswordPayload) => {
+      const { data } = await axiosInstance.patch(
+        '/auth/change-password',
+        payload,
+      );
       return data;
     },
-    onSuccess: async (data) => {
-      await signIn('credentials', { ...data, redirect: false });
-      toast.success('Login Success');
-
+    onSuccess: (data) => {
+      toast.success('Change password success');
       if (data?.roles === 'Customer') {
         return router.replace('/');
       } else {
@@ -37,4 +37,4 @@ const useLogin = () => {
   });
 };
 
-export default useLogin;
+export default useChangePassword;

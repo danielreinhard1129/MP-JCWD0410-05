@@ -2,7 +2,6 @@ import { hashPassword } from '@/lib/bcrypt';
 import prisma from '@/prisma';
 import { User } from '@prisma/client';
 import { nanoid } from 'nanoid';
-import { nanoid } from 'nanoid';
 
 export const registerService = async (body: User) => {
   try {

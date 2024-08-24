@@ -1,11 +1,7 @@
 import ForgotPasswordPage from '@/features/lupa-password';
 
 const ForgotPassword = () => {
-  return (
-    <div>
-      <ForgotPasswordPage />
-    </div>
-  );
+  return <ForgotPasswordPage />;
 };
 
 export default ForgotPassword;
