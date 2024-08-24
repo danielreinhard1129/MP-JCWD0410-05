@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 
 interface GetEventQueries extends PaginationQueries {
   search?: string;
+  location?: string;
 }
 
 const useGetEvents = (queries: GetEventQueries) => {
