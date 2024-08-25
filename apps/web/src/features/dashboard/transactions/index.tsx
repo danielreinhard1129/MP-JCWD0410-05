@@ -1,30 +1,25 @@
 'use client';
+import useChangeStatusTransaction from '@/hooks/transaction/useChangeStatusTransaction';
 import useGetTransactions from '@/hooks/transaction/useGetTransactions';
 import {
-  Box,
   Button,
   Container,
   Flex,
   Table,
-  TableCaption,
   TableContainer,
   Tbody,
   Td,
-  Text,
-  Tfoot,
   Th,
   Thead,
   Tr,
 } from '@chakra-ui/react';
-import { event } from 'cypress/types/jquery';
 import { useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation';
-import React from 'react';
+import { redirect, useParams } from 'next/navigation';
 
 const TransactionsPage = () => {
+  const { mutateAsync: changeStatus, isPending } = useChangeStatusTransaction();
   const { data } = useGetTransactions();
   const session = useSession();
-
   if (session.data?.user.roles !== 'Admin') {
     return redirect('/login');
   }
@@ -45,7 +40,9 @@ const TransactionsPage = () => {
             {data?.data.map((transaction, index) => {
               return (
                 <Tr key={transaction.id}>
-                  <Td style={{ textAlign: 'center' }}>{transaction.name}</Td>
+                  <Td style={{ textAlign: 'center' }}>
+                    {transaction.event.name}
+                  </Td>
                   <Td style={{ textAlign: 'center' }}>{transaction.qty}</Td>
                   <Td style={{ textAlign: 'center' }}>{transaction.total}</Td>
                   <Td style={{ textAlign: 'center' }}>{transaction.status}</Td>
@@ -59,8 +56,15 @@ const TransactionsPage = () => {
                           color: 'whitesmoke',
                           transform: 'scale(1.1)',
                         }}
+                        type="submit"
+                        onClick={() =>
+                          changeStatus({
+                            status: 'done',
+                            id: transaction.id,
+                          })
+                        }
                       >
-                        Accepted
+                        {isPending ? 'Loading...' : 'Accepted'}
                       </Button>
                       <Button
                         bgColor="#D4CDF4"
@@ -69,6 +73,13 @@ const TransactionsPage = () => {
                           color: 'whitesmoke',
                           transform: 'scale(1.1)',
                         }}
+                        type="submit"
+                        onClick={() =>
+                          changeStatus({
+                            status: 'rejected',
+                            id: transaction.id,
+                          })
+                        }
                       >
                         Rejected
                       </Button>

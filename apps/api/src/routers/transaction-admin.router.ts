@@ -18,6 +18,11 @@ export class TransactionRouter {
       verifyToken,
       this.transactionController.getTransactions,
     );
+    this.router.patch(
+      '/:id',
+      verifyToken,
+      this.transactionController.changeStatusPayment,
+    );
   }
 
   getRouter(): Router {
