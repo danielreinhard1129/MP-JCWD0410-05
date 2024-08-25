@@ -14,6 +14,7 @@ import { AuthRouter } from './routers/auth.router';
 import { EventRouter } from './routers/event.router';
 import { UserRouter } from './routers/user.router';
 import { TransactionRouter } from './routers/transaction-admin.router';
+import { TransactionUserRouter } from './routers/transaction-user.router';
 export default class App {
   private app: Express;
 
@@ -59,6 +60,7 @@ export default class App {
     const eventRouter = new EventRouter();
     const userRouter = new UserRouter();
     const transactionRouter = new TransactionRouter();
+    const transactionsRouter = new TransactionUserRouter();
 
     this.app.get('/api', (req: Request, res: Response) => {
       res.send(`Hello, Purwadhika Student API!`);
@@ -69,6 +71,7 @@ export default class App {
     this.app.use('/api/events', eventRouter.getRouter());
     this.app.use('/api/user', userRouter.getRouter());
     this.app.use('/api/transaction', transactionRouter.getRouter());
+    this.app.use('/api/transactions', transactionsRouter.getRouter());
   }
 
   public start(): void {

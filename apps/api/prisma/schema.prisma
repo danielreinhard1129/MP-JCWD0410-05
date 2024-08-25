@@ -134,6 +134,7 @@ model Review {
 model Transaction {
   id             Int           @id @default(autoincrement())
   qty            Int
+  price          Int
   status         StatusPayment
   total          Int
   payment_method PaymentMethod
