@@ -1,4 +1,5 @@
 import { Event } from './events';
+import { User } from './user';
 
 export interface Transactions {
   id: number;
@@ -6,4 +7,5 @@ export interface Transactions {
   total: number;
   status: string;
   event: Event;
+  user: User;
 }

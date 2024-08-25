@@ -13,6 +13,7 @@ export class EventsController {
         sortOrder: (req.query.sortOrder as string) || 'desc',
         search: (req.query.search as string) || '',
         location: (req.query.location as string) || '',
+        userId: parseInt(req.query.userId as string) || 0,
       };
 
       const result = await getEventsService(query);

@@ -8,12 +8,13 @@ interface GetEventService {
   sortOrder: string;
   search: string;
   location?: string;
+  userId?: number;
   // category?: string;
 }
 
 export const getEventsService = async (query: GetEventService) => {
   try {
-    const { take, page, sortBy, sortOrder, search, location } = query;
+    const { take, page, sortBy, sortOrder, search, location, userId } = query;
 
     const whereClause: Prisma.EventWhereInput = {};
 
@@ -24,6 +25,10 @@ export const getEventsService = async (query: GetEventService) => {
     }
     if (location) {
       whereClause.location = { contains: location };
+    }
+
+    if (userId) {
+      whereClause.userId = userId;
     }
 
     const events = await prisma.event.findMany({
