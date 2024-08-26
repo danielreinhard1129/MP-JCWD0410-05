@@ -1,5 +1,3 @@
-// import { TransactionUserController } from '@/controllers/transaction-user.controller';
-// import { TransactionController } from '@/controllers/transaction.controller';
 import { TransactionsUserController } from '@/controllers/transection-user.controller';
 import { uploader } from '@/lib/multer';
 import { verifyToken } from '@/lib/verifyToken';
@@ -27,12 +25,12 @@ export class TransactionUserRouter {
       verifyToken,
       this.transactionUserController.createTransaction,
     );
-    // this.router.patch(
-    //   '/:id',
-    //   verifyToken,
-    //   uploader().single('paymentProof'),
-    //   this.transactionUserController.updateTransaction,
-    // );
+    this.router.patch(
+      '/:id',
+      verifyToken,
+      uploader().single('payment_proof'),
+      this.transactionUserController.updateTransaction,
+    );
   }
 
   getRouter(): Router {

@@ -19,7 +19,7 @@ export const uploader = (fileLimit?: number) => {
     }
   };
 
-  const limits = { fileSize: fileLimit || 5 * 1024 * 1024 }; // default 5mb
+  const limits = { fileSize: fileLimit || 5 * 1024 * 1024 };
 
   return multer({ storage, fileFilter, limits });
 };

@@ -1,5 +1,7 @@
 'use client';
 import useGetTransaction from '@/hooks/api/transaction/useGetTransaction';
+import useUpdateTransaction from '@/hooks/api/transaction/useUpdateTransaction';
+import { Status, StatusPayment } from '@/types/transaction';
 import {
   Box,
   Button,
@@ -8,15 +10,36 @@ import {
   Flex,
   Grid,
   GridItem,
+  Input,
   Text,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { notFound, useParams } from 'next/navigation';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 const TransactionDetailsPage = () => {
+  const [paymentProof, setPaymentProof] = useState<File | null>(null);
   const { id: transactionId } = useParams<{ id: string }>();
   const { data, isPending } = useGetTransaction(transactionId);
+  const { mutateAsync: updateTransaction, isPending: isLoading } =
+    useUpdateTransaction(Number(transactionId));
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setPaymentProof(event.target.files[0]);
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (paymentProof) {
+      await updateTransaction({
+        payment_proof: paymentProof,
+        status: StatusPayment.waiting_for_admin_confirmation,
+      });
+    } else {
+      alert('Please select a payment proof file');
+    }
+  };
 
   if (isPending) {
     return <h1>Loading ...</h1>;
@@ -83,44 +106,95 @@ const TransactionDetailsPage = () => {
             Rp {data?.total}
           </Text>
         </Grid>
+        <Grid
+          templateColumns={{ base: '1fr 1fr', md: '5fr 1fr' }}
+          alignItems="center"
+        >
+          <Text textAlign="end" pr={5} color="gray.500" fontSize="sm">
+            Status :
+          </Text>
+          <Text align="center" color="orange.500" fontSize="lg">
+            {data?.status}
+          </Text>
+        </Grid>
         <Divider borderWidth="1px" borderColor="gray.200" />
 
         {/* metode pambayaran dan bayar */}
         <Grid templateColumns={{ base: '1fr', md: '5fr 1fr' }}>
-          <Flex my={5} align="center" gap={{ base: '3', md: '5' }}>
-            {/* qris */}
-            {/* <Link href="/transaksi">
-              <Text
-                border="1px"
-                borderColor="gray.200"
-                borderRadius="10px"
-                py={2}
-                px={3}
-              >
-                QRIS
-              </Text>
-            </Link> */}
-          </Flex>
+          <Flex my={5} align="center" gap={{ base: '3', md: '5' }}></Flex>
           {/* bayar */}
           <Flex my={{ base: '3', md: '5' }} justifyContent="center">
-            <Link href="/transaksi">
+            <Box mt={4}>
+              <Input type="file" onChange={handleFileChange} mb={2} w="full" />
               <Button
-                fontSize="md"
-                fontWeight="bold"
-                bgColor="orange.500"
+                type="submit"
+                onClick={handleSubmit}
+                isLoading={isLoading}
+                w="full"
+                rounded="md"
+                bg="blue.600"
                 color="white"
-                py={2}
-                px={5}
-                borderRadius="10px"
-                _hover={{
-                  borderColor: 'gray.200',
-                  bgColor: 'gray.200',
-                  color: 'black',
-                }}
+                _hover={{ bg: 'blue.700' }}
+                _disabled={{ bg: 'blue.300' }}
+                isDisabled={isLoading}
               >
-                Upload Proof of Payment
+                {isLoading ? 'Uploading...' : 'Upload Payment Proof'}
               </Button>
-            </Link>
+            </Box>
+            {/* {paymentImage ? ( */}
+            {/* <>
+                <Box position="relative" height="200px" width="100%">
+                  <Image
+                    src={paymentImage}
+                    alt="Payment proof"
+                    objectFit="cover"
+                  />
+                </Box>
+                <Button
+                  fontSize="md"
+                  fontWeight="bold"
+                  color="white"
+                  py={2}
+                  px={5}
+                  borderRadius="10px"
+                  width="100%"
+                  bgColor="orange.500"
+                  _hover={{
+                    borderColor: 'gray.200',
+                    bgColor: 'gray.200',
+                    color: 'black',
+                  }}
+                  onClick={removeSelectedImage}
+                >
+                  Remove
+                </Button>
+                <Button
+                  mt={2}
+                  width="100%"
+                  bg="green.500"
+                  _hover={{ bg: 'green.600' }}
+                  onClick={handleSubmit}
+                >
+                  {isPending ? 'Submitting...' : 'Submit'}
+                </Button>
+              </>
+            ) : (
+              <Button
+                width="100%"
+                bg="#0080ff"
+                _hover={{ bg: '#0066CC' }}
+                onClick={handleFileUpload}
+                isDisabled={isPending}
+              >
+                Upload Payment Proof
+              </Button>
+            )}
+            <Input
+              type="file"
+              ref={fileInputRef}
+              display="none"
+              onChange={onChangePaymentProof}
+            /> */}
           </Flex>
         </Grid>
       </Container>
@@ -129,3 +203,22 @@ const TransactionDetailsPage = () => {
 };
 
 export default TransactionDetailsPage;
+
+{
+  /* <Button
+  fontSize="md"
+  fontWeight="bold"
+  bgColor="orange.500"
+  color="white"
+  py={2}
+  px={5}
+  borderRadius="10px"
+  _hover={{
+    borderColor: 'gray.200',
+    bgColor: 'gray.200',
+    color: 'black',
+  }}
+>
+  Upload Proof of Payment
+</Button> */
+}
