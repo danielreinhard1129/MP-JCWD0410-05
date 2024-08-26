@@ -1,35 +1,35 @@
-// export interface Transactions extends Event {
-//   id: number;
-//   qty: number;
-//   total: number;
-//   status: StatusPayment;
-//   name: string;
-//   payment_method: string;
-//   payment_proof: string;
-//   voucher_used: string;
-//   reward_used: string;
-//   point_used: number;
-//   createdAt: string;
-//   updatedAt: string;
-//   event: {
-//     id: number;
-//     name: string;
-//     thumbnail: string;
-//     start_date: string;
-//     end_date: string;
-//     location: string;
-//     price: number;
-//   };
-//   user: {
-//     name: string;
-//     email: string;
-//   };
+export interface Transactions extends Event {
+  id: number;
+  qty: number;
+  total: number;
+  status: StatusPayment;
+  name: string;
+  payment_method: string;
+  payment_proof: string;
+  voucher_used: string;
+  reward_used: string;
+  point_used: number;
+  createdAt: string;
+  updatedAt: string;
+  event: {
+    id: number;
+    name: string;
+    thumbnail: string;
+    start_date: string;
+    end_date: string;
+    location: string;
+    price: number;
+  };
+  user: {
+    name: string;
+    email: string;
+  };
 
-//   // enum PaymentMethod {
-//   //   QRIS
-//   //   Bank_Transfer
-//   // }
-// }
+  // enum PaymentMethod {
+  //   QRIS
+  //   Bank_Transfer
+  // }
+}
 export interface Transaction {
   id: number;
   userId: number;

@@ -28,6 +28,8 @@ const AttendeeListPage = () => {
     take: 100,
   });
   const { data: attendeeList } = useGetAttendeeList({ eventId, page, take: 5 });
+  console.log(attendeeList);
+
   const onPageChange = ({ selected }: { selected: number }) => {
     setPage(selected + 1);
   };

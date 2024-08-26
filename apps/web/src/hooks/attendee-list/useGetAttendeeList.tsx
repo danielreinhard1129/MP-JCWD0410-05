@@ -1,9 +1,9 @@
 'use client';
 
 import { PageableResponse, PaginationQueries } from '@/types/pagination';
-import { Transactions } from '@/types/transaction';
 import { useQuery } from '@tanstack/react-query';
 import useAxios from '../useAxios';
+import { Transactions } from '@/types/transaction';
 
 interface GetAttendeeListQueries extends PaginationQueries {
   eventId?: number;
