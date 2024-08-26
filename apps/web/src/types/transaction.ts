@@ -70,7 +70,7 @@ export enum Status {
 
 export enum StatusPayment {
   waiting_for_payment = 'waiting_for_payment',
-  waiting_for_admin_confirmation = '  waiting_for_admin_confirmation',
+  waiting_for_admin_confirmation = 'waiting_for_admin_confirmation',
   done = 'done',
   rejected = 'rejected',
   expired = 'expired',
