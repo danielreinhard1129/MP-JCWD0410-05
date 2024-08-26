@@ -1,4 +1,4 @@
-import TransactionPage from '@/features/transaksi';
+import TransactionDetailsPage from '@/features/transaksi/[id]';
 import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import async from 'react-select/dist/declarations/src/async/index';
@@ -11,7 +11,7 @@ const Transaction = async () => {
   }
   return (
     <div>
-      <TransactionPage />
+      <TransactionDetailsPage />
     </div>
   );
 };
