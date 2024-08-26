@@ -7,6 +7,7 @@ import useAxios from '../useAxios';
 
 interface GetAttendeeListQueries extends PaginationQueries {
   eventId?: number;
+  search?: string;
 }
 
 const useGetAttendeeList = (queries: GetAttendeeListQueries) => {

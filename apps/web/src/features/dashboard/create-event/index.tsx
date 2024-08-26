@@ -23,6 +23,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { CreateEventSchema } from './schemas/CreateEventSchema';
 import dynamic from 'next/dynamic';
+import { auth } from '@/lib/auth';
+import { redirect } from 'next/navigation';
 const RichTextEditor = dynamic(() => import('@/components/RichTextEditor'), {
   ssr: false,
 });

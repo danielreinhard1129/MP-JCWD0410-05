@@ -1,6 +1,13 @@
 import RewardsPage from '@/features/rewards';
+import { auth } from '@/lib/auth';
+import { redirect } from 'next/navigation';
 
-const Rewards = () => {
+const Rewards = async () => {
+  const session = await auth();
+
+  if (session?.user.roles !== 'Customer') {
+    return redirect('/register');
+  }
   return (
     <div>
       <RewardsPage />

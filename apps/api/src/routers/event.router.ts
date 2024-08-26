@@ -19,7 +19,7 @@ export class EventRouter {
     this.router.post(
       '/',
       verifyToken,
-      uploader(5).single('thumbnail'),
+      uploader().single('thumbnail'),
       this.eventsController.createEvent,
     );
   }

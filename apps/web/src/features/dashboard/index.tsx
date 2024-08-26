@@ -15,14 +15,21 @@ import { CiMoneyBill } from 'react-icons/ci';
 import { GrTransaction } from 'react-icons/gr';
 import { FaPeopleGroup } from 'react-icons/fa6';
 import Link from 'next/link';
+import { auth } from '@/lib/auth';
+import { redirect } from 'next/navigation';
 
-const DashboardPage = () => {
+const DashboardPage = async () => {
+  const session = await auth();
+
+  if (session?.user.roles !== 'Admin') {
+    return redirect('/dashboard/register');
+  }
   return (
     <Box>
       <Container maxW="6xl">
         <Grid templateColumns="1fr 1fr 1fr" gap="35px">
           <GridItem my="70px">
-            <Box boxShadow="base" p={5} border="1px solid #B8BACF">
+            {/* <Box boxShadow="base" p={5} border="1px solid #B8BACF">
               <Flex justify="space-between" align="center">
                 <Flex align="center" gap={3}>
                   <MdOutlineFestival size="21px" color="#E86B32" />
@@ -42,7 +49,7 @@ const DashboardPage = () => {
                 <Text fontSize="50px">0</Text>
                 <Text>Event</Text>
               </Flex>
-            </Box>
+            </Box> */}
             <Box boxShadow="base" p={5} mt="35px" border="1px solid #B8BACF">
               <Flex justify="space-between" align="center">
                 <Flex align="center" gap={3}>
@@ -58,7 +65,7 @@ const DashboardPage = () => {
             </Box>
           </GridItem>
           <GridItem my="70px">
-            <Box boxShadow="base" p={5} border="1px solid #B8BACF">
+            {/* <Box boxShadow="base" p={5} border="1px solid #B8BACF">
               <Flex justify="space-between" align="center">
                 <Flex align="center" gap={3}>
                   <RiDraftLine size="21px" color="#E86B32" />
@@ -78,7 +85,7 @@ const DashboardPage = () => {
                 <Text fontSize="50px">0</Text>
                 <Text>Event</Text>
               </Flex>
-            </Box>
+            </Box> */}
             <Box boxShadow="base" p={5} mt="35px" border="1px solid #B8BACF">
               <Flex justify="space-between" align="center">
                 <Flex align="center" gap={3}>
@@ -93,7 +100,7 @@ const DashboardPage = () => {
             </Box>
           </GridItem>
           <GridItem my="70px">
-            <Box boxShadow="base" p={5} border="1px solid #B8BACF">
+            {/* <Box boxShadow="base" p={5} border="1px solid #B8BACF">
               <Flex justify="space-between" align="center">
                 <Flex align="center" gap={3}>
                   <GrTransaction size="21px" color="#E86B32" />
@@ -104,7 +111,7 @@ const DashboardPage = () => {
               <Flex align="baseline" gap={3}>
                 <Text fontSize="50px">0</Text>
               </Flex>
-            </Box>
+            </Box> */}
             <Box boxShadow="base" p={5} mt="35px" border="1px solid #B8BACF">
               <Flex justify="space-between" align="center">
                 <Flex align="center" gap={3}>

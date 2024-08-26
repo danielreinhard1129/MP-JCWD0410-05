@@ -5,7 +5,7 @@ export class AttendeeListController {
   async getAttendeeList(req: Request, res: Response, next: NextFunction) {
     try {
       const query = {
-        take: parseInt(req.query.take as string) || 100,
+        take: parseInt(req.query.take as string) || 3,
         page: parseInt(req.query.page as string) || 1,
         sortBy: (req.query.sortBy as string) || 'createdAt',
         sortOrder: (req.query.sortOrder as string) || 'desc',

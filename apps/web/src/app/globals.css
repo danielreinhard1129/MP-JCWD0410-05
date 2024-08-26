@@ -1,0 +1,21 @@
+.chakra-paginate-container {
+  display: flex;
+  gap: 1rem;
+  width: fit-content;
+  margin: 1rem;
+}
+
+.chakra-paginate-page-link {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.chakra-paginate-page-link:hover {
+  background-color: #f0f0f0; /* Adjust the color as needed */
+}
+
+.chakra-paginate-active {
+  background-color: #000;
+  color: #fff;
+}

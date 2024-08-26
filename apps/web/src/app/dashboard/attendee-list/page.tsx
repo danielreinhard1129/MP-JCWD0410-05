@@ -6,7 +6,7 @@ const AttendeeList = async () => {
   const session = await auth();
 
   if (session?.user.roles !== 'Admin') {
-    return redirect('/login');
+    return redirect('/dashboard/register');
   }
   return (
     <div>
