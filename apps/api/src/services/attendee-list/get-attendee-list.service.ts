@@ -7,6 +7,7 @@ interface GetAttendeeListService {
   sortBy: string;
   sortOrder: string;
   eventId: number;
+  search?: string;
 }
 
 export const getAttendeeListService = async (
